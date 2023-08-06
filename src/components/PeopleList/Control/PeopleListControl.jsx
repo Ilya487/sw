@@ -2,7 +2,7 @@ import React from "react";
 
 const PeopleListControl = ({ switchPage, prevNext, currentPage }) => {
   function setNextPage() {
-    switchPage({ page: +currentPage + 1 });
+    switchPage({ page: currentPage + 1 });
   }
 
   function setPrevPage() {

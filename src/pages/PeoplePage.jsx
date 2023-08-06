@@ -7,7 +7,6 @@ import { useSearchParams } from "react-router-dom";
 const PeoplePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [pageInfo, setPageInfo] = useState({});
-  // const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
 
   async function getPeople() {
@@ -33,7 +32,7 @@ const PeoplePage = () => {
       <PeopleList people={pageInfo.results} />
       <PeopleListControl
         prevNext={{ prev: pageInfo.previous, next: pageInfo.next }}
-        currentPage={searchParams.get("page")}
+        currentPage={+searchParams.get("page")}
         switchPage={setSearchParams}
       />
     </div>
