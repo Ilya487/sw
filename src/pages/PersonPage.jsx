@@ -31,9 +31,15 @@ const PersonPage = () => {
         <h1>Loading...</h1>
       ) : (
         <>
-          <img src={getPersonImg(personData.url)} alt="" />
           <h1>{personData.name}</h1>
-          <p>{personData.mass}</p>
+          <img src={getPersonImg(personData.url)} alt="" />
+          <p>height: {personData.height}</p>
+          <p>mass: {personData.mass}</p>
+          <p>hair color: {personData.hair_color}</p>
+          <p>skin_color: {personData.skin_color}</p>
+          <p>eye color: {personData.eye_color}</p>
+          <p>birth year: {personData.birth_year}</p>
+          <p>gender: {personData.gender}</p>
         </>
       )}
     </>
