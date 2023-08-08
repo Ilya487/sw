@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getPersonImg } from "../../../utils/getPersonImg";
 import { searchPeople } from "../../../API/people/searchPeople";
 import { debounce } from "../../../utils/debounce";
 import LoadMore from "./LoadMore/LoadMore";
-import { Link } from "react-router-dom";
-import { getEntityNumber } from "../../../utils/getEntityNumber";
+import PeopleList from "../../PeopleList/PeopleList";
 
 const FoundElements = ({ query }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,16 +36,7 @@ const FoundElements = ({ query }) => {
     searchData?.length > 0 ? (
       <>
         <h1>Найдено {searchInfo.count}</h1>
-        <ul>
-          {searchData.map((res) => (
-            <li key={res.url}>
-              <Link to={`/people/${getEntityNumber(res.url)}`}>
-                <img src={getPersonImg(res.url)} alt="" />
-                {res.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <PeopleList people={searchData} />
         <LoadMore next={searchInfo.next} setData={setSearchData} />
       </>
     ) : (

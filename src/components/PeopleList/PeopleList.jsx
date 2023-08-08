@@ -9,7 +9,7 @@ const PeopleList = ({ people }) => {
     <ul className={styles["people-list"]}>
       {people.map((p, indx) => (
         <li key={indx}>
-          <Link to={`${getEntityNumber(p.url)}`}>
+          <Link to={`/people/${getEntityNumber(p.url)}`}>
             <img src={getPersonImg(p.url)} alt="" />
             <p>{p.name}</p>
           </Link>
