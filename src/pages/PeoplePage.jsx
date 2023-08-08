@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PeopleList from "../components/PeopleList/PeopleList";
 import PeopleListControl from "../components/PeopleList/Control/PeopleListControl";
-import { getPeoplePage } from "../API/getPeoplePage";
+import { getPeoplePage } from "../API/people/getPeoplePage";
 import { useSearchParams } from "react-router-dom";
 
 const PeoplePage = () => {

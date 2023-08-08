@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { getPersonImg } from "../../../utils/getPersonImg";
+import { searchPeople } from "../../../API/people/searchPeople";
+import { debounce } from "../../../utils/debounce";
 
 const FoundElements = ({ query }) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchResults, setSearchResults] = useState();
 
-  async function search() {
+  async function search(query) {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://swapi.dev/api/people/?search=${query}`
-      );
-      const data = await response.json();
+      const data = await searchPeople(query);
       setSearchResults(data);
     } catch (e) {
       console.log(e);
@@ -20,9 +19,13 @@ const FoundElements = ({ query }) => {
     }
   }
 
+  const debouncedSearch = useRef(debounce(search, 400));
+
   useEffect(() => {
-    search();
+    debouncedSearch.current(query);
   }, [query]);
+
+  if (!searchResults) return;
 
   return isLoading ? (
     <h1>Loading</h1>
