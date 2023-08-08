@@ -3,11 +3,16 @@ import { searchPeople } from "../../../API/people/searchPeople";
 import { debounce } from "../../../utils/debounce";
 import LoadMore from "./LoadMore/LoadMore";
 import PeopleList from "../../PeopleList/PeopleList";
+import { useParams } from "react-router";
+import { useSearchParams } from "react-router-dom";
 
-const FoundElements = ({ query }) => {
+const FoundElements = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchInfo, setSearchInfo] = useState({});
   const [searchData, setSearchData] = useState([]);
+  const [searchParams] = useSearchParams();
+
+  const query = searchParams.get("search");
 
   async function search(query) {
     let isRequestAbort = false;
