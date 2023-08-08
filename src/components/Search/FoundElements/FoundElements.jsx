@@ -8,19 +8,15 @@ const FoundElements = ({ query }) => {
   const [searchResults, setSearchResults] = useState();
 
   async function search(query) {
-    let isRquestAbort = false;
+    let isRequestAbort = false;
     setIsLoading(true);
     try {
       const data = await searchPeople(query);
       setSearchResults(data);
     } catch (error) {
-      if (error.name === "AbortError") isRquestAbort = true;
-      console.log(e);
+      if (error.name === "AbortError") isRequestAbort = true;
     } finally {
-      if (isRquestAbort) {
-        console.log("isRquestAbort");
-        return;
-      }
+      if (isRequestAbort) return;
       setIsLoading(false);
     }
   }
@@ -31,24 +27,26 @@ const FoundElements = ({ query }) => {
     debouncedSearch.current(query);
   }, [query]);
 
-  if (!searchResults) return;
-
   return isLoading ? (
     <h1>Loading...</h1>
-  ) : searchResults.results.length > 0 ? (
-    <>
-      <h1>Найдено {searchResults.count}</h1>
-      <ul>
-        {searchResults.results.map((res) => (
-          <li>
-            <img src={getPersonImg(res.url)} alt="" />
-            {res.name}
-          </li>
-        ))}
-      </ul>
-    </>
+  ) : searchResults ? (
+    searchResults?.results.length > 0 ? (
+      <>
+        <h1>Найдено {searchResults.count}</h1>
+        <ul>
+          {searchResults.results.map((res) => (
+            <li key={res.url}>
+              <img src={getPersonImg(res.url)} alt="" />
+              {res.name}
+            </li>
+          ))}
+        </ul>
+      </>
+    ) : (
+      <p>Ничего не найдено(</p>
+    )
   ) : (
-    <p>Ничего не найдено(</p>
+    <></>
   );
 };
 
