@@ -3,6 +3,8 @@ import { getPersonImg } from "../../../utils/getPersonImg";
 import { searchPeople } from "../../../API/people/searchPeople";
 import { debounce } from "../../../utils/debounce";
 import LoadMore from "./LoadMore/LoadMore";
+import { Link } from "react-router-dom";
+import { getEntityNumber } from "../../../utils/getEntityNumber";
 
 const FoundElements = ({ query }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,8 +41,10 @@ const FoundElements = ({ query }) => {
         <ul>
           {searchData.map((res) => (
             <li key={res.url}>
-              <img src={getPersonImg(res.url)} alt="" />
-              {res.name}
+              <Link to={`/people/${getEntityNumber(res.url)}`}>
+                <img src={getPersonImg(res.url)} alt="" />
+                {res.name}
+              </Link>
             </li>
           ))}
         </ul>
