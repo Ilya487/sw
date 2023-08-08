@@ -1,18 +1,21 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getPersonImg } from "../../../utils/getPersonImg";
 import { searchPeople } from "../../../API/people/searchPeople";
 import { debounce } from "../../../utils/debounce";
+import LoadMore from "./LoadMore/LoadMore";
 
 const FoundElements = ({ query }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [searchResults, setSearchResults] = useState();
+  const [searchInfo, setSearchInfo] = useState({});
+  const [searchData, setSearchData] = useState([]);
 
   async function search(query) {
     let isRequestAbort = false;
     setIsLoading(true);
     try {
       const data = await searchPeople(query);
-      setSearchResults(data);
+      setSearchInfo(data);
+      setSearchData(data.results);
     } catch (error) {
       if (error.name === "AbortError") isRequestAbort = true;
     } finally {
@@ -29,18 +32,19 @@ const FoundElements = ({ query }) => {
 
   return isLoading ? (
     <h1>Loading...</h1>
-  ) : searchResults ? (
-    searchResults?.results.length > 0 ? (
+  ) : searchInfo ? (
+    searchData?.length > 0 ? (
       <>
-        <h1>Найдено {searchResults.count}</h1>
+        <h1>Найдено {searchInfo.count}</h1>
         <ul>
-          {searchResults.results.map((res) => (
+          {searchData.map((res) => (
             <li key={res.url}>
               <img src={getPersonImg(res.url)} alt="" />
               {res.name}
             </li>
           ))}
         </ul>
+        <LoadMore next={searchInfo.next} setData={setSearchData} />
       </>
     ) : (
       <p>Ничего не найдено(</p>
