@@ -13,7 +13,6 @@ const SearchPage = () => {
         value={searchParams.get("search")}
         onChange={(e) => setSearchParams({ search: e.target.value })}
       />
-
       <FoundElements />
     </div>
   );
