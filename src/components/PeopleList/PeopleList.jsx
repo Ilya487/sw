@@ -1,18 +1,13 @@
 import React from "react";
 import styles from "./PeopleList.module.scss";
-import { getPersonImg } from "../../utils/getPersonImg";
-import { getEntityNumber } from "../../utils/getEntityNumber";
-import { Link } from "react-router-dom";
+import PeopleListItem from "./PeopleListItem/PeopleListItem";
 
 const PeopleList = ({ people }) => {
   return (
     <ul className={styles["people-list"]}>
       {people.map((p, indx) => (
         <li key={indx}>
-          <Link to={`/people/${getEntityNumber(p.url)}`}>
-            <img src={getPersonImg(p.url)} alt="" />
-            <p>{p.name}</p>
-          </Link>
+          <PeopleListItem person={p} />
         </li>
       ))}
     </ul>
