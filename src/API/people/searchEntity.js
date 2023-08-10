@@ -1,7 +1,7 @@
 let controller;
 let signal;
 
-export async function searchPeople(query) {
+export async function searchEntity(query, entity) {
   if (controller) controller.abort();
 
   controller = new AbortController();
@@ -9,7 +9,7 @@ export async function searchPeople(query) {
 
   if (!query) return;
   const response = await fetch(
-    `https://swapi.dev/api/people/?search=${query}`,
+    `https://swapi.dev/api/${entity}/?search=${query}`,
     { signal }
   );
   return await response.json();

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { searchPeople } from "../../../API/people/searchPeople";
+import { searchEntity } from "../../../API/people/searchEntity";
 import { debounce } from "../../../utils/debounce";
 import LoadMore from "./LoadMore/LoadMore";
 import PeopleList from "../../PeopleList/PeopleList";
@@ -19,7 +19,7 @@ const FoundElements = () => {
     let isRequestAbort = false;
     setIsLoading(true);
     try {
-      const data = await searchPeople(query);
+      const data = await searchEntity(query, "people");
       setSearchInfo(data);
       setSearchData(data.results);
     } catch (error) {
