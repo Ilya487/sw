@@ -1,6 +1,6 @@
 import React from "react";
 
-const PeopleListControl = ({ switchPage, prevNext, currentPage }) => {
+const EntityListControl = ({ switchPage, prevNext, currentPage }) => {
   function setNextPage() {
     switchPage({ page: currentPage + 1 });
   }
@@ -21,4 +21,4 @@ const PeopleListControl = ({ switchPage, prevNext, currentPage }) => {
   );
 };
 
-export default PeopleListControl;
+export default EntityListControl;

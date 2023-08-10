@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDetailedDescription } from "../API/people/getDetailedDescription";
+import { getDetailedDescription } from "../API/getDetailedDescription";
 import { getEntityImg } from "../utils/getEntityImg";
 
 const PersonPage = () => {

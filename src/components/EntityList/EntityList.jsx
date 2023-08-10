@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./PeopleList.module.scss";
-import PeopleListItem from "./PeopleListItem/PeopleListItem";
+import PeopleListItem from "./EntityListItem/EntityListItem";
 
-const PeopleList = ({ people }) => {
+const EntityList = ({ people }) => {
   return (
     <ul className={styles["people-list"]}>
       {people.map((p, indx) => (
@@ -14,4 +14,4 @@ const PeopleList = ({ people }) => {
   );
 };
 
-export default PeopleList;
+export default EntityList;

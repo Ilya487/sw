@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getEntityNumber } from "../../../utils/getEntityNumber";
 import { getEntityImg } from "../../../utils/getEntityImg";
 
-const PeopleListItem = ({ person }) => {
+const EntityListItem = ({ person }) => {
   return (
     <Link to={`/people/${getEntityNumber(person.url)}`}>
       <img src={getEntityImg(person.url, "characters")} alt="" />
@@ -12,4 +12,4 @@ const PeopleListItem = ({ person }) => {
   );
 };
 
-export default PeopleListItem;
+export default EntityListItem;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import PeopleList from "../components/PeopleList/PeopleList";
-import PeopleListControl from "../components/PeopleList/Control/PeopleListControl";
-import { getEntitylePage } from "../API/people/getEntityPage";
+import PeopleList from "../components/EntityList/EntityList";
+import PeopleListControl from "../components/EntityList/Control/EntityListControl";
+import { getEntityPage } from "../API/getEntityPage";
 import { useSearchParams } from "react-router-dom";
 
 const PeoplePage = () => {
@@ -12,7 +12,7 @@ const PeoplePage = () => {
   async function getPeople() {
     setIsLoading(true);
     try {
-      const data = await getEntitylePage(searchParams.get("page"), "people");
+      const data = await getEntityPage(searchParams.get("page"), "people");
       setPageInfo(data);
     } catch (e) {
       console.log(e);

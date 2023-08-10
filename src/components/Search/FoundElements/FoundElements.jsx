@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { searchEntity } from "../../../API/people/searchEntity";
+import { searchEntity } from "../../../API/searchEntity";
 import { debounce } from "../../../utils/debounce";
 import LoadMore from "./LoadMore/LoadMore";
-import PeopleList from "../../PeopleList/PeopleList";
+import PeopleList from "../../EntityList/EntityList";
 import { useSearchParams } from "react-router-dom";
 
 const FoundElements = () => {
