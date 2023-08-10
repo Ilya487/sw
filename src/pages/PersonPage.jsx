@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPersonInfo } from "../API/people/getPersonInfo";
-import { getPersonImg } from "../utils/getPersonImg";
+import { getEntityImg } from "../utils/getEntityImg";
 
 const PersonPage = () => {
   const [personData, setPersonData] = useState({});
@@ -32,7 +32,7 @@ const PersonPage = () => {
       ) : (
         <>
           <h1>{personData.name}</h1>
-          <img src={getPersonImg(personData.url)} alt="" />
+          <img src={getEntityImg(personData.url, "characters")} alt="" />
           <p>height: {personData.height}</p>
           <p>mass: {personData.mass}</p>
           <p>hair color: {personData.hair_color}</p>
