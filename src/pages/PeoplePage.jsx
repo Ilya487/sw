@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PeopleList from "../components/PeopleList/PeopleList";
 import PeopleListControl from "../components/PeopleList/Control/PeopleListControl";
-import { getEntitylePage } from "../API/people/getEntitylePage";
+import { getEntitylePage } from "../API/people/getEntityPage";
 import { useSearchParams } from "react-router-dom";
 
 const PeoplePage = () => {

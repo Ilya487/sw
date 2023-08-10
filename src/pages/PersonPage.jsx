@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getPersonInfo } from "../API/people/getPersonInfo";
+import { getDetailedDescription } from "../API/people/getDetailedDescription";
 import { getEntityImg } from "../utils/getEntityImg";
 
 const PersonPage = () => {
@@ -12,7 +12,7 @@ const PersonPage = () => {
   async function getInfo() {
     setIsLoading(true);
     try {
-      const data = await getPersonInfo(id);
+      const data = await getDetailedDescription(id, "people");
       setPersonData(data);
     } catch (e) {
       console.log(e);
