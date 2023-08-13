@@ -13,13 +13,16 @@ const Search = ({ entity }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const query = searchParams.get("search");
 
+  const returnedSearch = useRef(searchEntity());
+
   async function search(query, entity, currentPage) {
+    console.log(returnedSearch.current);
     if (!query) return;
 
     let isRequestAbort = false;
     setIsLoading(true);
     try {
-      const data = await searchEntity(query, entity, currentPage);
+      const data = await returnedSearch.current(query, entity, currentPage);
       setSearchData(data);
     } catch (error) {
       if (error.name === "AbortError") isRequestAbort = true;
