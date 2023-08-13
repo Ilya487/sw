@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { searchEntity } from "../../API/searchEntity";
 import { debounce } from "../../utils/debounce";
-import LoadMore from "./FoundElements/LoadMore/LoadMore";
+import LoadMore from "./LoadMore/LoadMore";
 import { useSearchParams } from "react-router-dom";
-import { getEntityImg } from "../../utils/getEntityImg";
+import FoundElements from "./FoundElements/FoundElements";
 
 const Search = ({ entity }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -43,16 +43,9 @@ const Search = ({ entity }) => {
       <>
         <h1>Найдено {searchInfo.count}</h1>
         <div>
-          <ul>
-            {searchData.map((item) => (
-              <li>
-                <img src={getEntityImg(item.url, "films")} alt="" />
-                {item.title}
-              </li>
-            ))}
-          </ul>
+          <FoundElements elements={searchData} entity={entity} />
+          <LoadMore next={searchInfo.next} setData={setSearchData} />
         </div>
-        <LoadMore next={searchInfo.next} setData={setSearchData} />
       </>
     ) : (
       <p>Ничего не найдено(</p>
