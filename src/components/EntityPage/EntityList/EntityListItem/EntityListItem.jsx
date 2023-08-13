@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getEntityNumber } from "../../../utils/getEntityNumber";
-import { getEntityImg } from "../../../utils/getEntityImg";
+import { getEntityNumber } from "../.././../../utils/getEntityNumber";
+import { getEntityImg } from "../.././../../utils/getEntityImg";
+import { handleImageError } from "../../../../utils/handleImageError";
 
 const EntityListItem = ({ item }) => {
   function defineEntity(url) {
@@ -19,9 +20,15 @@ const EntityListItem = ({ item }) => {
     }
   }
 
+  const entity = defineEntity(item.url);
+
   return (
-    <Link to={`/people/${getEntityNumber(item.url)}`}>
-      <img src={getEntityImg(item.url, defineEntity(item.url))} alt="" />
+    <Link to={`/${entity}/${getEntityNumber(item.url)}`}>
+      <img
+        src={getEntityImg(item.url, entity)}
+        alt=""
+        onError={handleImageError}
+      />
       <p>{item.name}</p>
     </Link>
   );

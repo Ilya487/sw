@@ -1,13 +1,10 @@
 import React from "react";
 import { getEntityImg } from "../../../../utils/getEntityImg";
 import { Link } from "react-router-dom";
+import { handleImageError } from "../../../../utils/handleImageError";
 import styles from "./FoundItem.module.scss";
 
 const FoundItem = ({ item, entity }) => {
-  const handleImageError = (e) => {
-    e.target.src = "src/assets/errorPlaceholder.jpg";
-  };
-
   return (
     <li>
       <Link className={styles["search-item"]}>

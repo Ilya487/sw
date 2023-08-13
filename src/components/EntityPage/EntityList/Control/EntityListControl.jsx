@@ -1,12 +1,18 @@
 import React from "react";
 
-const EntityListControl = ({ switchPage, prevNext, currentPage }) => {
+const EntityListControl = ({ switchPage, prevNext }) => {
   function setNextPage() {
-    switchPage({ page: currentPage + 1 });
+    switchPage((prev) => {
+      const currentPage = +prev.get("page");
+      return { page: currentPage + 1 };
+    });
   }
 
   function setPrevPage() {
-    switchPage({ page: currentPage - 1 });
+    switchPage((prev) => {
+      const currentPage = +prev.get("page");
+      return { page: currentPage - 1 };
+    });
   }
 
   return (
