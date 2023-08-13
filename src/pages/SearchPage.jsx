@@ -14,6 +14,7 @@ const SearchPage = () => {
         onChange={(e) => setSearchParams({ search: e.target.value })}
       />
       <Search entity={"people"} />
+      <Search entity={"vehicles"} />
     </div>
   );
 };
