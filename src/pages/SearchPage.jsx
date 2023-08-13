@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FoundElements from "../components/Search/FoundElements/FoundElements";
+import Search from "../components/Search/Search";
 import { useSearchParams } from "react-router-dom";
 
 const SearchPage = () => {
@@ -13,7 +13,7 @@ const SearchPage = () => {
         value={searchParams.get("search")}
         onChange={(e) => setSearchParams({ search: e.target.value })}
       />
-      <FoundElements />
+      <Search entity={"films"} />
     </div>
   );
 };
