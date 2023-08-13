@@ -16,6 +16,7 @@ const Search = ({ entity }) => {
   const returnedSearch = useRef(searchEntity());
 
   async function search(query, entity, currentPage) {
+    console.log(returnedSearch.current);
     if (!query) return;
 
     let isRequestAbort = false;
