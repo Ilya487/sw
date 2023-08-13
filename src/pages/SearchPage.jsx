@@ -13,7 +13,7 @@ const SearchPage = () => {
         value={searchParams.get("search")}
         onChange={(e) => setSearchParams({ search: e.target.value })}
       />
-      <Search entity={"vehicles"} />
+      <Search entity={"people"} />
     </div>
   );
 };

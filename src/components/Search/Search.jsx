@@ -1,27 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import { searchEntity } from "../../API/searchEntity";
 import { debounce } from "../../utils/debounce";
-import LoadMore from "./LoadMore/LoadMore";
 import { useSearchParams } from "react-router-dom";
 import FoundElements from "./FoundElements/FoundElements";
+import styles from "./Search.module.scss";
+import SearchListControl from "./FoundElements/SearchListControl/SearchListControl";
 
 const Search = ({ entity }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [searchInfo, setSearchInfo] = useState();
   const [searchData, setSearchData] = useState();
   const [searchParams] = useSearchParams();
-
+  const [currentPage, setCurrentPage] = useState(1);
   const query = searchParams.get("search");
 
-  async function search(query) {
+  async function search(query, entity, currentPage) {
     if (!query) return;
 
     let isRequestAbort = false;
     setIsLoading(true);
     try {
-      const data = await searchEntity(query, entity);
-      setSearchInfo(data);
-      setSearchData(data.results);
+      const data = await searchEntity(query, entity, currentPage);
+      setSearchData(data);
     } catch (error) {
       if (error.name === "AbortError") isRequestAbort = true;
     } finally {
@@ -33,18 +32,26 @@ const Search = ({ entity }) => {
   const debouncedSearch = useRef(debounce(search, 400));
 
   useEffect(() => {
-    debouncedSearch.current(query);
+    setCurrentPage(1);
+    debouncedSearch.current(query, entity, currentPage);
   }, [query]);
+
+  useEffect(() => {
+    debouncedSearch.current(query, entity, currentPage);
+  }, [currentPage]);
 
   return isLoading ? (
     <h1>Loading...</h1>
-  ) : searchInfo ? (
-    searchData?.length > 0 ? (
+  ) : searchData ? (
+    searchData.results.length > 0 ? (
       <>
-        <h1>Найдено {searchInfo.count}</h1>
-        <div>
-          <FoundElements elements={searchData} entity={entity} />
-          <LoadMore next={searchInfo.next} setData={setSearchData} />
+        <h1>Найдено {searchData.count}</h1>
+        <div className={styles.search}>
+          <FoundElements elements={searchData.results} entity={entity} />
+          <SearchListControl
+            prevNext={{ prev: searchData.previous, next: searchData.next }}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </>
     ) : (

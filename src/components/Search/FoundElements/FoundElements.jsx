@@ -1,14 +1,12 @@
 import React from "react";
-import { getEntityImg } from "../../../utils/getEntityImg";
 import FoundItem from "./FoundItem/FoundItem";
+import styles from "./FoundElements.module.scss";
 
 const FoundElements = ({ elements, entity }) => {
   return (
-    <ul>
+    <ul className={styles["search-list"]}>
       {elements.map((item) => (
-        <li key={item.url}>
-          <FoundItem item={item} entity={entity} />
-        </li>
+        <FoundItem item={item} entity={entity} key={item.url} />
       ))}
     </ul>
   );
