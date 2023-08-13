@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import PeopleList from "../components/EntityList/EntityList";
-import PeopleListControl from "../components/EntityList/Control/EntityListControl";
+import EntityList from "../components/EntityList/EntityList";
+import EntityListControl from "../components/EntityList/Control/EntityListControl";
 import { setEntityPage } from "../API/setEntityPage";
 import { useSearchParams } from "react-router-dom";
 
@@ -29,8 +29,8 @@ const PeoplePage = () => {
     <h1>Loading...</h1>
   ) : (
     <div>
-      <PeopleList people={pageInfo.results} />
-      <PeopleListControl
+      <EntityList entityList={pageInfo.results} />
+      <EntityListControl
         prevNext={{ prev: pageInfo.previous, next: pageInfo.next }}
         currentPage={+searchParams.get("page")}
         switchPage={setSearchParams}

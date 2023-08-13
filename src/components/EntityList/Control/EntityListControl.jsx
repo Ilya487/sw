@@ -6,7 +6,7 @@ const EntityListControl = ({ switchPage, prevNext, currentPage }) => {
   }
 
   function setPrevPage() {
-    switchPage({ page: +currentPage - 1 });
+    switchPage({ page: currentPage - 1 });
   }
 
   return (

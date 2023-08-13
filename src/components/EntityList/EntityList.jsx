@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./PeopleList.module.scss";
-import PeopleListItem from "./EntityListItem/EntityListItem";
+import EntityListItem from "./EntityListItem/EntityListItem";
 
-const EntityList = ({ people }) => {
+const EntityList = ({ entityList }) => {
   return (
     <ul className={styles["people-list"]}>
-      {people.map((p, indx) => (
+      {entityList.map((item, indx) => (
         <li key={indx}>
-          <PeopleListItem person={p} />
+          <EntityListItem item={item} />
         </li>
       ))}
     </ul>
