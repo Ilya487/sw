@@ -10,6 +10,7 @@ import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
 import FavoriteProvider from "./providers/FavoriteProvider";
+import FavoritePage from "./pages/FavoritePage";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
             <Route path="starships" element={<StarshipsPage />} />
 
             <Route path="vehicles" element={<VehiclesPage />} />
+
+            <Route path="favorite" element={<FavoritePage />} />
 
             <Route path="/" element={<Navigate to="people" />} />
             <Route path="*" element={<p>нет такой страницы</p>} />

@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
+import { useFavorite } from "../../../hooks/useFavorite";
 
 const Header = () => {
+  const { favorites } = useFavorite();
+
   function setActive({ isActive }) {
     return {
       color: isActive && "red",
@@ -37,6 +40,10 @@ const Header = () => {
 
       <NavLink to="vehicles" style={setActive}>
         Vehicles
+      </NavLink>
+
+      <NavLink to="favorite" style={setActive}>
+        {favorites.length}
       </NavLink>
     </header>
   );
