@@ -9,31 +9,34 @@ import PlanetsPage from "./pages/PlanetsPage";
 import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
+import FavoriteProvider from "./providers/FavoriteProvider";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="people" element={<PeoplePage />} />
-          <Route path="people/:id" element={<PersonPage />} />
+      <FavoriteProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="people" element={<PeoplePage />} />
+            <Route path="people/:id" element={<PersonPage />} />
 
-          <Route path="search" element={<SearchPage />} />
+            <Route path="search" element={<SearchPage />} />
 
-          <Route path="films" element={<FilmsPage />} />
+            <Route path="films" element={<FilmsPage />} />
 
-          <Route path="planets" element={<PlanetsPage />} />
+            <Route path="planets" element={<PlanetsPage />} />
 
-          <Route path="species" element={<SpeciesPage />} />
+            <Route path="species" element={<SpeciesPage />} />
 
-          <Route path="starships" element={<StarshipsPage />} />
+            <Route path="starships" element={<StarshipsPage />} />
 
-          <Route path="vehicles" element={<VehiclesPage />} />
+            <Route path="vehicles" element={<VehiclesPage />} />
 
-          <Route path="/" element={<Navigate to="people" />} />
-          <Route path="*" element={<p>нет такой страницы</p>} />
-        </Route>
-      </Routes>
+            <Route path="/" element={<Navigate to="people" />} />
+            <Route path="*" element={<p>нет такой страницы</p>} />
+          </Route>
+        </Routes>
+      </FavoriteProvider>
     </BrowserRouter>
   );
 }
