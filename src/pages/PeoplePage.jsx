@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import EntityPage from "../components/EntityPage/EntityPage";
+
 const PeoplePage = () => {
-  return <EntityPage entity="starships" />;
+  return <EntityPage entity="people" />;
 };
 
 export default PeoplePage;
