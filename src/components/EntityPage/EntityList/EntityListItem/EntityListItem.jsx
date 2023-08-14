@@ -4,24 +4,10 @@ import { getEntityNumber } from "../.././../../utils/getEntityNumber";
 import { getEntityImg } from "../.././../../utils/getEntityImg";
 import { handleImageError } from "../../../../utils/handleImageError";
 import { useFavorite } from "../../../../hooks/useFavorite";
+import { defineEntity } from "../../../../utils/defineEntity";
 
 const EntityListItem = ({ item }) => {
   const { toggleFavorite, checkFavorite } = useFavorite();
-
-  function defineEntity(url) {
-    const entities = [
-      "films",
-      "people",
-      "starships",
-      "vehicles",
-      "species",
-      "planets",
-    ];
-
-    for (const entity of entities) {
-      if (url.includes(entity)) return entity;
-    }
-  }
 
   const entity = defineEntity(item.url);
 

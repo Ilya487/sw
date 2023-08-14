@@ -43,7 +43,7 @@ const Header = () => {
       </NavLink>
 
       <NavLink to="favorite" style={setActive}>
-        {favorites.length}
+        Favorite {favorites.length}
       </NavLink>
     </header>
   );
