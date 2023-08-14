@@ -1,7 +1,7 @@
 import React from "react";
-import EntityList from "../components/EntityPage/EntityList/EntityList";
 import { useFavorite } from "../hooks/useFavorite";
 import { defineEntity } from "../utils/defineEntity";
+import FavoritesList from "../components/FavoritesList/FavoritesList";
 
 const FavoritePage = () => {
   const { favorites } = useFavorite();
@@ -16,7 +16,7 @@ const FavoritePage = () => {
       planets: [],
     };
 
-    favorites.map((f) => {
+    favorites.forEach((f) => {
       const entity = defineEntity(f.url);
       entitiesList[entity].push(f);
     });
@@ -26,19 +26,10 @@ const FavoritePage = () => {
 
   const sortedFavorites = sortFavorites();
 
-  return (
-    <>
-      {Object.keys(sortedFavorites).map((key) => {
-        if (sortedFavorites[key].length > 0) {
-          return (
-            <div>
-              <h1>{key}</h1>
-              <EntityList entityList={sortedFavorites[key]} />
-            </div>
-          );
-        } else return <></>;
-      })}
-    </>
+  return favorites.length > 0 ? (
+    <FavoritesList favorites={sortedFavorites} />
+  ) : (
+    <p>No data</p>
   );
 };
 
