@@ -9,7 +9,6 @@ const SearchPage = () => {
   });
 
   const filters = searchParams.getAll("filters");
-
   return (
     <div>
       <input
@@ -17,10 +16,13 @@ const SearchPage = () => {
         type="text"
         value={searchParams.get("search")}
         onChange={(e) =>
-          setSearchParams((params) => {
-            params.set("search", e.target.value);
-            return params;
-          })
+          setSearchParams(
+            (params) => {
+              params.set("search", e.target.value);
+              return params;
+            },
+            { replace: true }
+          )
         }
       />
 
