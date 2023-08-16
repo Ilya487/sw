@@ -11,6 +11,7 @@ const Filter = ({ setFilters }) => {
 
   return (
     <div>
+      <span>Выбор категорий для поиска: </span>
       <label style={{ marginRight: "10px" }}>
         <input
           type="checkbox"

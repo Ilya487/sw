@@ -60,9 +60,7 @@ const Search = ({ entity }) => {
     ) : (
       <p>Ничего не найдено(</p>
     )
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default Search;

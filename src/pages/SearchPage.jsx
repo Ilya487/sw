@@ -24,7 +24,6 @@ const SearchPage = () => {
         onChange={(e) => setSearchParams({ search: e.target.value })}
       />
 
-      <span>Выбор категорий для поиска </span>
       <Filter setFilters={setFilters} />
 
       {filters.map((f, indx) => (

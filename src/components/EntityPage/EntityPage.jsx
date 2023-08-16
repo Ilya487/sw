@@ -29,7 +29,6 @@ const EntityPage = ({ entity }) => {
   return isLoading ? (
     [...new Array(9)].map((_, i) => <Sceleton />)
   ) : (
-    // <h1>Loading...</h1>
     <div>
       <EntityList entityList={pageInfo.results} />
       <EntityListControl
