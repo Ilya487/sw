@@ -1,61 +1,44 @@
 import React from "react";
+import { entities } from "../../../utils/constants/entities";
 
-const Filter = ({ setFilters }) => {
+const Filter = ({ searchParams, setSearchParams }) => {
   function toggleFilter(checkBox) {
-    if (checkBox.checked) {
-      setFilters((p) => [...p, checkBox.value]);
-    } else {
-      setFilters((p) => p.filter((f) => f != checkBox.value));
-    }
+    setSearchParams((params) => {
+      if (params.getAll("filters").some((val) => val == checkBox.value)) {
+        const updatedParams = params
+          .getAll("filters")
+          .filter((param) => param != checkBox.value);
+
+        params.delete("filters");
+
+        updatedParams.forEach((f) => params.append("filters", f));
+
+        return params;
+      }
+
+      params.append("filters", checkBox.value);
+      return params;
+    });
   }
+
+  const selectedFilters = searchParams.getAll("filters");
 
   return (
     <div>
       <span>Выбор категорий для поиска: </span>
-      <label style={{ marginRight: "10px" }}>
-        <input
-          type="checkbox"
-          onChange={(e) => toggleFilter(e.target)}
-          value="people"
-        />
-        people
-      </label>
-
-      <label style={{ marginRight: "10px" }}>
-        <input
-          type="checkbox"
-          onChange={(e) => toggleFilter(e.target)}
-          value="starships"
-        />
-        starships
-      </label>
-
-      <label style={{ marginRight: "10px" }}>
-        <input
-          type="checkbox"
-          onChange={(e) => toggleFilter(e.target)}
-          value="vehicles"
-        />
-        vehicles
-      </label>
-
-      <label style={{ marginRight: "10px" }}>
-        <input
-          type="checkbox"
-          onChange={(e) => toggleFilter(e.target)}
-          value="species"
-        />
-        species
-      </label>
-
-      <label style={{ marginRight: "10px" }}>
-        <input
-          type="checkbox"
-          onChange={(e) => toggleFilter(e.target)}
-          value="planets"
-        />
-        planets
-      </label>
+      {entities.map((entity) => (
+        <React.Fragment key={entity}>
+          <label style={{ marginRight: "10px" }}>
+            <input
+              type="checkbox"
+              value={entity}
+              onChange={(e) => toggleFilter(e.target)}
+              checked={selectedFilters.indexOf(entity) == -1 ? false : true}
+            />
+            {entity}
+          </label>
+        </React.Fragment>
+      ))}
     </div>
   );
 };
