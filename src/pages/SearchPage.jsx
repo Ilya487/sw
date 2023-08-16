@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import Search from "../components/Search/Search";
 import { useSearchParams } from "react-router-dom";
+import Filter from "../components/Search/Filter/Filter";
 
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams({ search: "" });
+  const [filters, setFilters] = useState([]);
+
+  function toggleFilter(checkBox) {
+    if (checkBox.checked) {
+      setFilters([...filters, checkBox.value]);
+    } else {
+      setFilters(filters.filter((f) => f != checkBox.value));
+    }
+  }
 
   return (
     <div>
@@ -13,8 +23,13 @@ const SearchPage = () => {
         value={searchParams.get("search")}
         onChange={(e) => setSearchParams({ search: e.target.value })}
       />
-      <Search entity={"people"} />
-      <Search entity={"vehicles"} />
+
+      <span>Выбор категорий для поиска </span>
+      <Filter setFilters={setFilters} />
+
+      {filters.map((f, indx) => (
+        <Search entity={f} key={indx} />
+      ))}
     </div>
   );
 };
