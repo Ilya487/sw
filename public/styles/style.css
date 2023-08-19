@@ -1,0 +1,14 @@
+:root {
+  --light: #fff;
+  --dark: #000;
+  --current-theme: var(--light);
+
+  --light-font: #000;
+  --dark-font: #fff;
+  --current-font: var(--light-font);
+}
+body {
+  background-color: var(--current-theme);
+  transition: all 0.3s;
+  color: var(--current-font);
+}
