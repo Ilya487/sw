@@ -1,12 +1,11 @@
 import React from "react";
-import { changeThemeCssVars } from "../../../../utils/changeThemeCssVars";
+import { useTheme } from "../../../../hooks/useTheme";
 
 const ThemeSelector = () => {
+  const { changeTheme } = useTheme();
+
   return (
-    <select
-      onChange={(e) => changeThemeCssVars(e.target.value)}
-      defaultValue="light"
-    >
+    <select onChange={(e) => changeTheme(e.target.value)} defaultValue="light">
       <option value="light">Light side</option>
       <option value="dark">Dark side</option>
     </select>

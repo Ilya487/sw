@@ -1,21 +1,38 @@
 :root {
-  --theme-light-bg: #fff;
-  --theme-dark-bg: #000;
+  --theme-light-bg: linear-gradient(
+    to right bottom,
+    #051937,
+    #162454,
+    #312d70,
+    #533389,
+    #7a359f
+  );
+  --theme-dark-bg: linear-gradient(
+    to right bottom,
+    #000000,
+    #160b11,
+    #20141e,
+    #281b2e,
+    #2b2440
+  );
   --theme-current-bg: var(--theme-light-bg);
 
-  --theme-light-color: #000;
-  --theme-dark-color: #fff;
+  --theme-light-color: #dfe2df;
+  --theme-dark-color: #ca6c6f;
   --theme-current-color: var(--theme-light-color);
 }
 body {
-  background-color: var(--theme-current-bg);
-  transition: background-color 0.3s;
+  background-image: var(--theme-current-bg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-attachment: fixed;
+  color: var(--theme-current-color);
 }
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  color: var(--theme-current-color);
-}
+} */

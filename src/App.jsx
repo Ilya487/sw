@@ -11,35 +11,38 @@ import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
 import FavoriteProvider from "./providers/FavoriteProvider";
 import FavoritePage from "./pages/FavoritePage";
+import ThemeProvider from "./providers/ThemeProvider";
 
 function App() {
   return (
     <BrowserRouter>
-      <FavoriteProvider>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="people" element={<PeoplePage />} />
-            <Route path="people/:id" element={<PersonPage />} />
+      <ThemeProvider>
+        <FavoriteProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="people" element={<PeoplePage />} />
+              <Route path="people/:id" element={<PersonPage />} />
 
-            <Route path="search" element={<SearchPage />} />
+              <Route path="search" element={<SearchPage />} />
 
-            <Route path="films" element={<FilmsPage />} />
+              <Route path="films" element={<FilmsPage />} />
 
-            <Route path="planets" element={<PlanetsPage />} />
+              <Route path="planets" element={<PlanetsPage />} />
 
-            <Route path="species" element={<SpeciesPage />} />
+              <Route path="species" element={<SpeciesPage />} />
 
-            <Route path="starships" element={<StarshipsPage />} />
+              <Route path="starships" element={<StarshipsPage />} />
 
-            <Route path="vehicles" element={<VehiclesPage />} />
+              <Route path="vehicles" element={<VehiclesPage />} />
 
-            <Route path="favorite" element={<FavoritePage />} />
+              <Route path="favorite" element={<FavoritePage />} />
 
-            <Route path="/" element={<Navigate to="people" />} />
-            <Route path="*" element={<p>нет такой страницы</p>} />
-          </Route>
-        </Routes>
-      </FavoriteProvider>
+              <Route path="/" element={<Navigate to="people" />} />
+              <Route path="*" element={<p>нет такой страницы</p>} />
+            </Route>
+          </Routes>
+        </FavoriteProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
