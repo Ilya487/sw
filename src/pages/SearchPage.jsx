@@ -14,7 +14,7 @@ const SearchPage = () => {
       <input
         style={{ border: "2px solid black", margin: "40px", fontSize: "1em" }}
         type="text"
-        value={searchParams.get("search")}
+        value={searchParams.get("search") || ""}
         onChange={(e) =>
           setSearchParams(
             (params) => {

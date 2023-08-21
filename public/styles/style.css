@@ -1,14 +1,21 @@
 :root {
-  --light: #fff;
-  --dark: #000;
-  --current-theme: var(--light);
+  --theme-light-bg: #fff;
+  --theme-dark-bg: #000;
+  --theme-current-bg: var(--theme-light-bg);
 
-  --light-font: #000;
-  --dark-font: #fff;
-  --current-font: var(--light-font);
+  --theme-light-color: #000;
+  --theme-dark-color: #fff;
+  --theme-current-color: var(--theme-light-color);
 }
 body {
-  background-color: var(--current-theme);
-  transition: all 0.3s;
-  color: var(--current-font);
+  background-color: var(--theme-current-bg);
+  transition: background-color 0.3s;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--theme-current-color);
 }
