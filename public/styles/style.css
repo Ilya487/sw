@@ -1,4 +1,6 @@
 :root {
+  font-family: "Lexend", sans-serif;
+  /* THEME */
   --theme-light-bg: linear-gradient(
     to right bottom,
     #051937,
@@ -29,10 +31,8 @@ body {
   background-attachment: fixed;
   color: var(--theme-current-color);
 }
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-} */
+.container {
+  max-width: 1310px;
+  padding: 0 15px;
+  margin: 0 auto;
+}

@@ -1,7 +1,7 @@
 import React from "react";
-import PeoplePage from "./pages/PeoplePage";
+import PeoplePage from "./pages/people/PeoplePage";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import PersonPage from "./pages/PersonPage";
+import PersonPage from "./pages/people/PersonPage/PersonPage";
 import Layout from "./components/Layout/Layout";
 import SearchPage from "./pages/SearchPage";
 import FilmsPage from "./pages/FilmsPage";
