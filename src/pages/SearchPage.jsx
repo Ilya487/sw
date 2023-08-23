@@ -6,6 +6,7 @@ import Filter from "../components/Search/Filter/Filter";
 const SearchPage = () => {
   const [searchParams, setSearchParams] = useSearchParams({
     search: "",
+    filters: "people",
   });
 
   const filters = searchParams.getAll("filters");

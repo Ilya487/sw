@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useFavorite } from "../../../hooks/useFavorite";
 import ThemeSelector from "./ThemeSelector/ThemeSelector";
+import Logo from "./Logo/Logo";
 
 const Header = () => {
   const { favorites } = useFavorite();
@@ -15,7 +16,10 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
+      <Logo />
+
       <ThemeSelector />
+
       <NavLink to="search" style={setActive}>
         Search
       </NavLink>
