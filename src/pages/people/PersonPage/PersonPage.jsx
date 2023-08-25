@@ -4,6 +4,7 @@ import { getDetailedDescription } from "../../../API/getDetailedDescription";
 import styles from "./PersonPage.module.scss";
 import { getEntityImg } from "../../../utils/getEntityImg";
 import PersonInfo from "./PersonInfo/PersonInfo";
+import RelatedData from "../../../components/RelatedData/RelatedData";
 
 const PersonPage = () => {
   const [personData, setPersonData] = useState({});
@@ -42,6 +43,7 @@ const PersonPage = () => {
               </div>
               <div className={styles["right-side"]}>
                 <PersonInfo personData={personData} />
+                <RelatedData urls={personData.films} />
               </div>
             </div>
           </div>
