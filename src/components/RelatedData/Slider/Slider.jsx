@@ -3,20 +3,37 @@ import styles from "./Slider.module.scss";
 import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
 
-const SLIDES_TO_SHOW = 4;
-const SLIDES_TO_SCROLL = 2;
+const SLIDES_TO_SHOW = 3;
+const SLIDES_TO_SCROLL = 1;
 
 const Slider = ({ slides }) => {
   const [itemWidth, setItemWidth] = useState(0);
   const [offset, setOffset] = useState(0);
 
   const slideItemRef = useRef();
-  const trackRef = useRef();
+
+  function calculateSliderItemWidth() {
+    const s = getComputedStyle(slideItemRef.current);
+
+    const marginLeft = Number.parseInt(s.marginLeft);
+    const marginRight = Number.parseInt(s.marginRight);
+
+    const width = marginLeft + marginRight + slideItemRef.current.offsetWidth;
+
+    setItemWidth(width);
+  }
 
   useEffect(() => {
-    const newWidth = trackRef.current.offsetWidth / slides.length;
-    setItemWidth(newWidth);
+    calculateSliderItemWidth();
   }, [slides]);
+
+  useEffect(() => {
+    window.addEventListener("resize", calculateSliderItemWidth);
+
+    return () => {
+      window.removeEventListener("resize", calculateSliderItemWidth);
+    };
+  }, []);
 
   const setNextSlide = () => {
     const newOffset = offset - itemWidth * SLIDES_TO_SCROLL;
@@ -42,7 +59,6 @@ const Slider = ({ slides }) => {
       >
         <div
           className={styles["slider-track"]}
-          ref={trackRef}
           style={{ transform: `translateX(${offset}px)` }}
         >
           {slides.map((slide) => (
