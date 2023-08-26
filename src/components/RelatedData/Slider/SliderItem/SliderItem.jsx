@@ -1,14 +1,34 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { defineEntity } from "../../../../utils/defineEntity";
 import { getEntityImg } from "../../../../utils/getEntityImg";
 import { Link } from "react-router-dom";
-import styles from "./SliderItem.module.scss";
 import { getEntityNumber } from "../../../../utils/getEntityNumber";
+import styles from "./SliderItem.module.scss";
 
-const SliderItem = ({ slide }) => {
+// const SliderItem = ({ slide }) => {
+//   const entity = defineEntity(slide.url);
+//   return (
+//     <Link
+//       to={`/${entity}/${getEntityNumber(slide.url)}`}
+//       className={styles["slider-item"]}
+//     >
+//       <img
+//         src={getEntityImg(slide.url, entity)}
+//         alt={entity == "films" ? slide.title : slide.name}
+//       />
+//       <p>{entity == "films" ? slide.title : slide.name}</p>
+//     </Link>
+//   );
+// };
+
+const SliderItem = forwardRef(({ slide }, ref) => {
   const entity = defineEntity(slide.url);
   return (
-    <Link to={`/${entity}/${getEntityNumber(slide.url)}`}>
+    <Link
+      to={`/${entity}/${getEntityNumber(slide.url)}`}
+      className={styles["slider-item"]}
+      ref={ref}
+    >
       <img
         src={getEntityImg(slide.url, entity)}
         alt={entity == "films" ? slide.title : slide.name}
@@ -16,6 +36,6 @@ const SliderItem = ({ slide }) => {
       <p>{entity == "films" ? slide.title : slide.name}</p>
     </Link>
   );
-};
+});
 
 export default SliderItem;
