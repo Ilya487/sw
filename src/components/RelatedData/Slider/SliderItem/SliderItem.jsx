@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import { getEntityNumber } from "../../../../utils/getEntityNumber";
 import styles from "./SliderItem.module.scss";
 
-// const SliderItem = ({ slide }) => {
+// const SliderItem = ({ slide, width }) => {
 //   const entity = defineEntity(slide.url);
+
 //   return (
 //     <Link
 //       to={`/${entity}/${getEntityNumber(slide.url)}`}
 //       className={styles["slider-item"]}
+//       style={{ minWidth: `${width}px`, maxWidth: `${width}px` }}
 //     >
 //       <img
 //         src={getEntityImg(slide.url, entity)}
@@ -21,12 +23,13 @@ import styles from "./SliderItem.module.scss";
 //   );
 // };
 
-const SliderItem = forwardRef(({ slide }, ref) => {
+const SliderItem = forwardRef(({ slide, width }, ref) => {
   const entity = defineEntity(slide.url);
   return (
     <Link
       to={`/${entity}/${getEntityNumber(slide.url)}`}
       className={styles["slider-item"]}
+      style={{ minWidth: `${width}px`, maxWidth: `${width}px` }}
       ref={ref}
     >
       <img

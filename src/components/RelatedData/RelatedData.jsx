@@ -25,7 +25,8 @@ const RelatedData = ({ urls }) => {
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <Slider slides={[...data, ...data]} />
+    // <Slider slides={[...data, ...data, ...data]} />
+    <Slider slides={data} />
   );
 };
 
