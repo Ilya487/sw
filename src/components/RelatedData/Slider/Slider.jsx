@@ -4,10 +4,10 @@ import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
 
 const SLIDES_TO_SHOW = 4;
-const SLIDES_TO_SCROLL = 1;
+const SLIDES_TO_SCROLL = 2;
 
 const Slider = ({ slides }) => {
-  const [itemWidth, setItemWidth] = useState(250);
+  const [itemWidth, setItemWidth] = useState();
   const [offset, setOffset] = useState(0);
   const [stepWidth, setStepWidth] = useState();
 
@@ -25,11 +25,29 @@ const Slider = ({ slides }) => {
   const calculateSlideWidth = () => {
     const margins = calculateSlideMargins();
 
-    const windowWidth = windowRef.current.offsetWidth;
+    const windowWidth = windowRef.current.getBoundingClientRect().width;
 
-    setStepWidth(windowWidth / SLIDES_TO_SHOW);
-    setItemWidth(windowWidth / SLIDES_TO_SHOW - margins);
+    const updatedStepWidth = windowWidth / SLIDES_TO_SHOW;
+
+    const updatedItemWidth = windowWidth / SLIDES_TO_SHOW - margins;
+
+    setStepWidth(updatedStepWidth);
+    setItemWidth(updatedItemWidth);
   };
+
+  const stabilizeSlider = () => {
+    if (!offset || !itemWidth || !stepWidth) return;
+
+    const countShowedSlides = Math.round(offset / itemWidth);
+
+    const newOffset = stepWidth * countShowedSlides;
+
+    setOffset(newOffset);
+  };
+
+  useEffect(() => {
+    stabilizeSlider();
+  }, [itemWidth]);
 
   useEffect(() => {
     calculateSlideWidth();
@@ -69,7 +87,7 @@ const Slider = ({ slides }) => {
           {slides.map((slide) => (
             <SliderItem
               slide={slide}
-              key={slide.url}
+              key={slide.url + Math.random() * 100000}
               width={itemWidth}
               ref={slideRef}
             />
