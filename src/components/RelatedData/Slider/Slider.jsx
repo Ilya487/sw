@@ -1,4 +1,4 @@
-import React, { cloneElement, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Slider.module.scss";
 import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
@@ -10,6 +10,7 @@ const Slider = ({ slides }) => {
   const [itemWidth, setItemWidth] = useState();
   const [offset, setOffset] = useState(0);
   const [stepWidth, setStepWidth] = useState();
+  const [showedSlides, setShowedSlides] = useState(0);
 
   const windowRef = useRef();
   const slideRef = useRef();
@@ -36,18 +37,16 @@ const Slider = ({ slides }) => {
   };
 
   const stabilizeSlider = () => {
-    if (!offset || !itemWidth || !stepWidth) return;
+    if (!itemWidth || !stepWidth) return;
 
-    const countShowedSlides = Math.round(offset / itemWidth);
-
-    const newOffset = stepWidth * countShowedSlides;
+    const newOffset = -(stepWidth * showedSlides);
 
     setOffset(newOffset);
   };
 
   useEffect(() => {
     stabilizeSlider();
-  }, [itemWidth]);
+  }, [itemWidth, offset]);
 
   useEffect(() => {
     calculateSlideWidth();
@@ -67,6 +66,7 @@ const Slider = ({ slides }) => {
 
     if (newOffset < limit && offset <= limit) return;
 
+    setShowedSlides((actual) => actual + SLIDES_TO_SCROLL);
     setOffset(newOffset);
   };
 
@@ -74,6 +74,7 @@ const Slider = ({ slides }) => {
     if (offset >= 0) return;
     const newOffset = offset + stepWidth * SLIDES_TO_SCROLL;
 
+    setShowedSlides((actual) => actual - SLIDES_TO_SCROLL);
     setOffset(newOffset);
   };
 
