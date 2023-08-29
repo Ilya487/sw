@@ -46,7 +46,7 @@ const Slider = ({ slides }) => {
 
   useEffect(() => {
     stabilizeSlider();
-  }, [itemWidth, offset]);
+  }, [itemWidth]);
 
   useEffect(() => {
     calculateSlideWidth();
@@ -59,6 +59,28 @@ const Slider = ({ slides }) => {
       window.removeEventListener("resize", calculateSlideWidth);
     };
   }, []);
+
+  const dragSlider = (e) => {
+    e.preventDefault();
+
+    const track = e.currentTarget;
+    const startX = e.clientX;
+    const startOffset = offset;
+
+    track.onmousemove = (e) => {
+      setOffset(startOffset + e.clientX - startX);
+    };
+
+    track.onmouseup = () => {
+      track.onmousemove = null;
+    };
+
+    track.onmouseleave = (e) => {
+      console.log(e);
+      track.onmousemove = null;
+      track.onmouseleave = null;
+    };
+  };
 
   const setNextSlide = () => {
     const newOffset = offset - stepWidth * SLIDES_TO_SCROLL;
@@ -80,7 +102,7 @@ const Slider = ({ slides }) => {
 
   return (
     <div>
-      <div className={styles.window} ref={windowRef}>
+      <div className={styles.window} ref={windowRef} onMouseDown={dragSlider}>
         <div
           className={styles["slider-track"]}
           style={{ transform: `translateX(${offset}px)` }}
