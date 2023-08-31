@@ -67,18 +67,13 @@ const Slider = ({ slides }) => {
     const startX = e.clientX;
     const startOffset = offset;
 
-    track.onmousemove = (e) => {
+    document.onmousemove = (e) => {
+      if (!e.target.closest("." + track.className)) document.onmousemove = null;
       setOffset(startOffset + e.clientX - startX);
     };
 
     track.onmouseup = () => {
-      track.onmousemove = null;
-    };
-
-    track.onmouseleave = (e) => {
-      console.log(e);
-      track.onmousemove = null;
-      track.onmouseleave = null;
+      document.onmousemove = null;
     };
   };
 
