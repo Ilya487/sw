@@ -2,39 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Slider.module.scss";
 import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
+import { useRecalculationSlideWidth } from "./hook/useRecalculationSlideWidth";
 
 const SLIDES_TO_SHOW = 5;
 const SLIDES_TO_SCROLL = 3;
 
 const Slider = ({ slides }) => {
-  const [itemWidth, setItemWidth] = useState();
   const [offset, setOffset] = useState(0);
-  const [stepWidth, setStepWidth] = useState();
   const [showedSlides, setShowedSlides] = useState(0);
 
   const windowRef = useRef();
   const slideRef = useRef();
 
-  const calculateSlideMargins = () => {
-    const style = getComputedStyle(slideRef.current);
-    const marginLeft = parseInt(style.marginLeft);
-    const marginRight = parseInt(style.marginRight);
-
-    return marginLeft + marginRight;
-  };
-
-  const calculateSlideWidth = () => {
-    const margins = calculateSlideMargins();
-
-    const windowWidth = windowRef.current.getBoundingClientRect().width;
-
-    const updatedStepWidth = windowWidth / SLIDES_TO_SHOW;
-
-    const updatedItemWidth = windowWidth / SLIDES_TO_SHOW - margins;
-
-    setStepWidth(updatedStepWidth);
-    setItemWidth(updatedItemWidth);
-  };
+  const { itemWidth, stepWidth } = useRecalculationSlideWidth(
+    slides,
+    windowRef,
+    slideRef,
+    SLIDES_TO_SHOW
+  );
 
   const stabilizeSlider = () => {
     if (!itemWidth || !stepWidth) return;
@@ -46,18 +31,6 @@ const Slider = ({ slides }) => {
   useEffect(() => {
     stabilizeSlider();
   }, [itemWidth]);
-
-  useEffect(() => {
-    calculateSlideWidth();
-  }, [slides]);
-
-  useEffect(() => {
-    window.addEventListener("resize", calculateSlideWidth);
-
-    return () => {
-      window.removeEventListener("resize", calculateSlideWidth);
-    };
-  }, []);
 
   const dragSlider = (e) => {
     e.preventDefault();
