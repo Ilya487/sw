@@ -3,8 +3,8 @@ import styles from "./Slider.module.scss";
 import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
 
-const SLIDES_TO_SHOW = 4;
-const SLIDES_TO_SCROLL = 2;
+const SLIDES_TO_SHOW = 5;
+const SLIDES_TO_SCROLL = 3;
 
 const Slider = ({ slides }) => {
   const [itemWidth, setItemWidth] = useState();
@@ -40,7 +40,6 @@ const Slider = ({ slides }) => {
     if (!itemWidth || !stepWidth) return;
 
     const newOffset = -(stepWidth * showedSlides);
-
     setOffset(newOffset);
   };
 
@@ -68,12 +67,33 @@ const Slider = ({ slides }) => {
     const startOffset = offset;
 
     document.onmousemove = (e) => {
-      if (!e.target.closest("." + track.className)) document.onmousemove = null;
+      if (!e.target.closest("." + track.className)) {
+        document.onmousemove = null;
+        stabilizedAfterDrop(e);
+
+        return;
+      }
+
       setOffset(startOffset + e.clientX - startX);
     };
 
-    track.onmouseup = () => {
+    track.onmouseup = (e) => {
       document.onmousemove = null;
+
+      stabilizedAfterDrop(e);
+    };
+
+    const stabilizedAfterDrop = (e) => {
+      let newShowed = -Math.round(
+        (startOffset + e.clientX - startX) / stepWidth
+      );
+
+      if (newShowed < 1) newShowed = 0;
+      if (newShowed > slides.length - SLIDES_TO_SHOW)
+        newShowed = slides.length - SLIDES_TO_SHOW;
+
+      setOffset(-stepWidth * newShowed);
+      setShowedSlides(newShowed);
     };
   };
 
@@ -88,7 +108,11 @@ const Slider = ({ slides }) => {
   };
 
   const setPrevSlide = () => {
-    if (offset >= 0) return;
+    if (offset >= 0) {
+      setOffset(0);
+      setShowedSlides(0);
+      return;
+    }
     const newOffset = offset + stepWidth * SLIDES_TO_SCROLL;
 
     setShowedSlides((actual) => actual - SLIDES_TO_SCROLL);
