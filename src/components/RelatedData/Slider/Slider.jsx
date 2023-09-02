@@ -22,7 +22,7 @@ const Slider = ({ slides }) => {
     SLIDES_TO_SHOW
   );
 
-  useStabilizeAfterResize(stepWidth, showedSlides, setOffset, itemWidth);
+  useStabilizeAfterResize(stepWidth, showedSlides, setOffset);
 
   const dragSlider = (e) => {
     e.preventDefault();
@@ -66,15 +66,9 @@ const Slider = ({ slides }) => {
     console.log("touchstart");
     const startX = e.touches[0].clientX;
     const startOffset = offset;
-    // windowRef.current.firstChild.style.pointerEvents = "none";
 
-    // windowRef.current.ontouchmove = (e) => {
-    //   console.log(e);
-    //   setOffset(startOffset + e.touches[0].clientX - startX);
-    // };
     windowRef.current.ontouchmove = (e) => {
       setOffset(startOffset + e.touches[0].clientX - startX);
-      // console.log(startOffset + e.touches[0].clientX - startX);
     };
 
     windowRef.current.ontouchend = (e) => {

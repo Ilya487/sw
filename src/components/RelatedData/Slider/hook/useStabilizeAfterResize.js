@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 
-export const useStabilizeAfterResize = (
-  stepWidth,
-  showedSlides,
-  setOffset,
-  itemWidth
-) => {
+export const useStabilizeAfterResize = (stepWidth, showedSlides, setOffset) => {
   const stabilizeSlider = () => {
     const newOffset = -(stepWidth * showedSlides);
     setOffset(newOffset);
@@ -13,5 +8,5 @@ export const useStabilizeAfterResize = (
 
   useEffect(() => {
     stabilizeSlider();
-  }, [itemWidth]);
+  }, [stepWidth]);
 };
