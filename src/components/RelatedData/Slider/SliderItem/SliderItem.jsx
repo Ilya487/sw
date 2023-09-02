@@ -25,6 +25,7 @@ import styles from "./SliderItem.module.scss";
 
 const SliderItem = forwardRef(({ slide, width }, ref) => {
   const entity = defineEntity(slide.url);
+
   return (
     <Link
       to={`/${entity}/${getEntityNumber(slide.url)}`}

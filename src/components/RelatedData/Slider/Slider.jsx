@@ -33,7 +33,9 @@ const Slider = ({ slides }) => {
   }, [itemWidth]);
 
   const dragSlider = (e) => {
+    console.log("mousedown");
     e.preventDefault();
+    e.stopPropagation();
 
     const track = e.currentTarget;
     const startX = e.clientX;
@@ -42,8 +44,7 @@ const Slider = ({ slides }) => {
     document.onmousemove = (e) => {
       if (!e.target.closest("." + track.className)) {
         document.onmousemove = null;
-        stabilizedAfterDrop(e);
-
+        stabilizedAfterDrop(e.clientX);
         return;
       }
 
@@ -53,13 +54,44 @@ const Slider = ({ slides }) => {
     track.onmouseup = (e) => {
       document.onmousemove = null;
 
-      stabilizedAfterDrop(e);
+      stabilizedAfterDrop(e.clientX);
     };
 
-    const stabilizedAfterDrop = (e) => {
-      let newShowed = -Math.round(
-        (startOffset + e.clientX - startX) / stepWidth
-      );
+    const stabilizedAfterDrop = (xCoord) => {
+      let newShowed = -Math.round((startOffset + xCoord - startX) / stepWidth);
+
+      if (newShowed < 1) newShowed = 0;
+      if (newShowed > slides.length - SLIDES_TO_SHOW)
+        newShowed = slides.length - SLIDES_TO_SHOW;
+
+      setOffset(-stepWidth * newShowed);
+      setShowedSlides(newShowed);
+    };
+  };
+
+  const touchDragSlider = (e) => {
+    console.log("touchstart");
+    const startX = e.touches[0].clientX;
+    const startOffset = offset;
+    // windowRef.current.firstChild.style.pointerEvents = "none";
+
+    // windowRef.current.ontouchmove = (e) => {
+    //   console.log(e);
+    //   setOffset(startOffset + e.touches[0].clientX - startX);
+    // };
+    windowRef.current.ontouchmove = (e) => {
+      setOffset(startOffset + e.touches[0].clientX - startX);
+      // console.log(startOffset + e.touches[0].clientX - startX);
+    };
+
+    windowRef.current.ontouchend = (e) => {
+      console.log("touchend");
+      console.log(e);
+      stabilizedAfterDrop(e.changedTouches[0].clientX);
+    };
+
+    const stabilizedAfterDrop = (xCoord) => {
+      let newShowed = -Math.round((startOffset + xCoord - startX) / stepWidth);
 
       if (newShowed < 1) newShowed = 0;
       if (newShowed > slides.length - SLIDES_TO_SHOW)
@@ -81,12 +113,13 @@ const Slider = ({ slides }) => {
   };
 
   const setPrevSlide = () => {
-    if (offset >= 0) {
+    const newOffset = offset + stepWidth * SLIDES_TO_SCROLL;
+
+    if (newOffset >= 0) {
       setOffset(0);
       setShowedSlides(0);
       return;
     }
-    const newOffset = offset + stepWidth * SLIDES_TO_SCROLL;
 
     setShowedSlides((actual) => actual - SLIDES_TO_SCROLL);
     setOffset(newOffset);
@@ -94,15 +127,20 @@ const Slider = ({ slides }) => {
 
   return (
     <div>
-      <div className={styles.window} ref={windowRef} onMouseDown={dragSlider}>
+      <div
+        className={styles.window}
+        ref={windowRef}
+        onMouseDown={dragSlider}
+        onTouchStart={touchDragSlider}
+      >
         <div
           className={styles["slider-track"]}
           style={{ transform: `translateX(${offset}px)` }}
         >
-          {slides.map((slide) => (
+          {slides.map((slide, i) => (
             <SliderItem
               slide={slide}
-              key={slide.url + Math.random() * 100000}
+              key={i}
               width={itemWidth}
               ref={slideRef}
             />
