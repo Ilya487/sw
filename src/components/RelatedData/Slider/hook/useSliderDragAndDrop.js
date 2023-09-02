@@ -21,12 +21,15 @@ export const useSliderDragAndDrop = (
     startOffset = offset;
 
     track.onmousemove = (e) => {
+      setIsDraging(true);
       setOffset(startOffset + e.clientX - startX);
     };
 
     track.onmouseleave = (e) => {
       track.onmousemove = null;
       track.onmouseleave = null;
+
+      setIsDraging(false);
 
       stabilizedAfterDrop(e.clientX);
     };
@@ -35,11 +38,15 @@ export const useSliderDragAndDrop = (
       track.onmousemove = null;
       track.onmouseleave = null;
 
+      setIsDraging(false);
+
       stabilizedAfterDrop(e.clientX);
     };
   };
 
   const touchDragSlider = (e) => {
+    setIsDraging(true);
+
     const sliderWindow = e.currentTarget;
     startX = e.touches[0].clientX;
     startOffset = offset;
@@ -50,6 +57,7 @@ export const useSliderDragAndDrop = (
 
     sliderWindow.ontouchend = (e) => {
       stabilizedAfterDrop(e.changedTouches[0].clientX);
+      setIsDraging(false);
     };
   };
 

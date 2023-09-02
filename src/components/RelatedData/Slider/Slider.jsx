@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Slider.module.scss";
 import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
 import { useRecalculationSlideWidth } from "./hook/useRecalculationSlideWidth";
 import { useStabilizeAfterResize } from "./hook/useStabilizeAfterResize";
 import { useSliderDragAndDrop } from "./hook/useSliderDragAndDrop";
+import clsx from "clsx";
 
 const SLIDES_TO_SHOW = 4;
 const SLIDES_TO_SCROLL = 2;
@@ -66,7 +67,10 @@ const Slider = ({ slides }) => {
         onTouchStart={touchDragSlider}
       >
         <div
-          className={styles["slider-track"]}
+          className={clsx(
+            styles["slider-track"],
+            isDraging && styles["slider-track--draging"]
+          )}
           style={{ transform: `translateX(${offset}px)` }}
         >
           {slides.map((slide, i) => (
