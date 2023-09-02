@@ -3,9 +3,10 @@ import styles from "./Slider.module.scss";
 import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
 import { useRecalculationSlideWidth } from "./hook/useRecalculationSlideWidth";
+import { useStabilizeAfterResize } from "./hook/useStabilizeAfterResize";
 
-const SLIDES_TO_SHOW = 5;
-const SLIDES_TO_SCROLL = 3;
+const SLIDES_TO_SHOW = 4;
+const SLIDES_TO_SCROLL = 2;
 
 const Slider = ({ slides }) => {
   const [offset, setOffset] = useState(0);
@@ -21,19 +22,9 @@ const Slider = ({ slides }) => {
     SLIDES_TO_SHOW
   );
 
-  const stabilizeSlider = () => {
-    if (!itemWidth || !stepWidth) return;
-
-    const newOffset = -(stepWidth * showedSlides);
-    setOffset(newOffset);
-  };
-
-  useEffect(() => {
-    stabilizeSlider();
-  }, [itemWidth]);
+  useStabilizeAfterResize(stepWidth, showedSlides, setOffset, itemWidth);
 
   const dragSlider = (e) => {
-    console.log("mousedown");
     e.preventDefault();
     e.stopPropagation();
 
@@ -41,18 +32,20 @@ const Slider = ({ slides }) => {
     const startX = e.clientX;
     const startOffset = offset;
 
-    document.onmousemove = (e) => {
-      if (!e.target.closest("." + track.className)) {
-        document.onmousemove = null;
-        stabilizedAfterDrop(e.clientX);
-        return;
-      }
-
+    track.onmousemove = (e) => {
       setOffset(startOffset + e.clientX - startX);
     };
 
+    track.onmouseleave = (e) => {
+      track.onmousemove = null;
+      track.onmouseleave = null;
+
+      stabilizedAfterDrop(e.clientX);
+    };
+
     track.onmouseup = (e) => {
-      document.onmousemove = null;
+      track.onmousemove = null;
+      track.onmouseleave = null;
 
       stabilizedAfterDrop(e.clientX);
     };

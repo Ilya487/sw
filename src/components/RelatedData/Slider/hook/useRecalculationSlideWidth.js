@@ -6,8 +6,8 @@ export const useRecalculationSlideWidth = (
   slideRef,
   SLIDES_TO_SHOW
 ) => {
-  const [itemWidth, setItemWidth] = useState();
-  const [stepWidth, setStepWidth] = useState();
+  const [itemWidth, setItemWidth] = useState(0);
+  const [stepWidth, setStepWidth] = useState(0);
 
   const calculateSlideMargins = () => {
     const style = getComputedStyle(slideRef.current);
