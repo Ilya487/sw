@@ -4,6 +4,7 @@ import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
 import { useRecalculationSlideWidth } from "./hook/useRecalculationSlideWidth";
 import { useStabilizeAfterResize } from "./hook/useStabilizeAfterResize";
+import { useSliderDragAndDrop } from "./hook/useSliderDragAndDrop";
 
 const SLIDES_TO_SHOW = 4;
 const SLIDES_TO_SCROLL = 2;
@@ -24,70 +25,14 @@ const Slider = ({ slides }) => {
 
   useStabilizeAfterResize(stepWidth, showedSlides, setOffset);
 
-  const dragSlider = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const track = e.currentTarget;
-    const startX = e.clientX;
-    const startOffset = offset;
-
-    track.onmousemove = (e) => {
-      setOffset(startOffset + e.clientX - startX);
-    };
-
-    track.onmouseleave = (e) => {
-      track.onmousemove = null;
-      track.onmouseleave = null;
-
-      stabilizedAfterDrop(e.clientX);
-    };
-
-    track.onmouseup = (e) => {
-      track.onmousemove = null;
-      track.onmouseleave = null;
-
-      stabilizedAfterDrop(e.clientX);
-    };
-
-    const stabilizedAfterDrop = (xCoord) => {
-      let newShowed = -Math.round((startOffset + xCoord - startX) / stepWidth);
-
-      if (newShowed < 1) newShowed = 0;
-      if (newShowed > slides.length - SLIDES_TO_SHOW)
-        newShowed = slides.length - SLIDES_TO_SHOW;
-
-      setOffset(-stepWidth * newShowed);
-      setShowedSlides(newShowed);
-    };
-  };
-
-  const touchDragSlider = (e) => {
-    console.log("touchstart");
-    const startX = e.touches[0].clientX;
-    const startOffset = offset;
-
-    windowRef.current.ontouchmove = (e) => {
-      setOffset(startOffset + e.touches[0].clientX - startX);
-    };
-
-    windowRef.current.ontouchend = (e) => {
-      console.log("touchend");
-      console.log(e);
-      stabilizedAfterDrop(e.changedTouches[0].clientX);
-    };
-
-    const stabilizedAfterDrop = (xCoord) => {
-      let newShowed = -Math.round((startOffset + xCoord - startX) / stepWidth);
-
-      if (newShowed < 1) newShowed = 0;
-      if (newShowed > slides.length - SLIDES_TO_SHOW)
-        newShowed = slides.length - SLIDES_TO_SHOW;
-
-      setOffset(-stepWidth * newShowed);
-      setShowedSlides(newShowed);
-    };
-  };
+  const { dragSlider, touchDragSlider, isDraging } = useSliderDragAndDrop(
+    offset,
+    setOffset,
+    stepWidth,
+    SLIDES_TO_SHOW,
+    setShowedSlides,
+    slides.length
+  );
 
   const setNextSlide = () => {
     const newOffset = offset - stepWidth * SLIDES_TO_SCROLL;
