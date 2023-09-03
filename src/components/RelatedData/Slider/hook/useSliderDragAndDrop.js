@@ -67,6 +67,7 @@ export const useSliderDragAndDrop = (
     if (newShowed < 1) newShowed = 0;
     if (newShowed > slidesCount - SLIDES_TO_SHOW)
       newShowed = slidesCount - SLIDES_TO_SHOW;
+    if (slidesCount <= SLIDES_TO_SHOW) newShowed = 0;
 
     setOffset(-stepWidth * newShowed);
     setShowedSlides(newShowed);

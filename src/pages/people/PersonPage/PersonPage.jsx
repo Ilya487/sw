@@ -43,7 +43,15 @@ const PersonPage = () => {
               </div>
               <div className={styles["right-side"]}>
                 <PersonInfo personData={personData} />
-                <RelatedData urls={personData.films} />
+                {personData.films.length > 0 && (
+                  <RelatedData urls={personData.films} />
+                )}
+                {personData.starships.length > 0 && (
+                  <RelatedData urls={personData.starships} />
+                )}
+                {personData.vehicles.length > 0 && (
+                  <RelatedData urls={personData.vehicles} />
+                )}
               </div>
             </div>
           </div>
