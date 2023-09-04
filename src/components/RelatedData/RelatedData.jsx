@@ -22,12 +22,7 @@ const RelatedData = ({ urls }) => {
     getData();
   }, []);
 
-  return isLoading ? (
-    <h1>Loading...</h1>
-  ) : (
-    <Slider slides={[...data, ...data, ...data]} />
-  );
-  // <Slider slides={data} />;
+  return isLoading ? <h1>Loading...</h1> : <Slider slides={data} />;
 };
 
 export default RelatedData;

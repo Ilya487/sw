@@ -8,7 +8,7 @@ import { useSliderDragAndDrop } from "./hook/useSliderDragAndDrop";
 import clsx from "clsx";
 
 const SLIDES_TO_SHOW = 4;
-const SLIDES_TO_SCROLL = 5;
+const SLIDES_TO_SCROLL = 3;
 
 const Slider = ({ slides }) => {
   const [offset, setOffset] = useState(0);
@@ -87,10 +87,7 @@ const Slider = ({ slides }) => {
       <SliderControl
         setPrevSlide={setPrevSlide}
         setNextSlide={setNextSlide}
-        isLast={
-          showedSlides == slides.length - SLIDES_TO_SHOW ||
-          slides.length <= SLIDES_TO_SHOW
-        }
+        isLast={slides.length - showedSlides <= SLIDES_TO_SHOW}
         isFirst={showedSlides == 0}
       />
     </div>
