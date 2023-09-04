@@ -1,0 +1,9 @@
+.button {
+  &--checked {
+    background-color: red;
+  }
+
+  &--non-checked {
+    background-color: blue;
+  }
+}

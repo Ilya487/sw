@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { getEntityNumber } from "../.././../../utils/getEntityNumber";
 import { getEntityImg } from "../.././../../utils/getEntityImg";
 import { handleImageError } from "../../../../utils/handleImageError";
-import { useFavorite } from "../../../../hooks/useFavorite";
 import { defineEntity } from "../../../../utils/defineEntity";
 import FavoriteBtn from "../../../UI/FavoriteBtn/FavoriteBtn";
 

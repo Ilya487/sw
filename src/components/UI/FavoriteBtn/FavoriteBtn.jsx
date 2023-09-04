@@ -1,8 +1,11 @@
 import React from "react";
 import { useFavorite } from "../../../hooks/useFavorite";
+import styles from "./FavoriteBtn.module.scss";
+import clsx from "clsx";
 
-const FavoriteBtn = ({ item, ...props }) => {
+const FavoriteBtn = ({ item, className, ...props }) => {
   const { toggleFavorite, checkFavorite } = useFavorite();
+  const isChecked = checkFavorite(item.url);
 
   return (
     <button
@@ -11,12 +14,14 @@ const FavoriteBtn = ({ item, ...props }) => {
         e.preventDefault();
         toggleFavorite(item);
       }}
-      style={{
-        backgroundColor: checkFavorite(item.url) ? "red" : "blue",
-        color: "white",
-      }}
+      className={clsx(
+        className,
+        styles.button,
+
+        isChecked ? styles["button--checked"] : styles["button--non-checked"]
+      )}
     >
-      {checkFavorite(item.url) ? "del" : "add"}
+      {isChecked ? "del" : "add"}
     </button>
   );
 };
