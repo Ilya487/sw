@@ -5,6 +5,7 @@ import styles from "./PersonPage.module.scss";
 import { getEntityImg } from "../../../utils/getEntityImg";
 import PersonInfo from "./PersonInfo/PersonInfo";
 import RelatedData from "../../../components/RelatedData/RelatedData";
+import PersonInfoPreloader from "./PersonInfoPreloader/PersonInfoPreloader";
 
 const PersonPage = () => {
   const [personData, setPersonData] = useState({});
@@ -24,24 +25,22 @@ const PersonPage = () => {
     }
   }
 
-  useEffect(() => {
-    getInfo();
-  }, []);
+  // useEffect(() => {
+  //   getInfo();
+  // }, []);
 
   return (
     <>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <PersonInfoPreloader />
       ) : (
         <div className={styles["person-page"]}>
           <div className="container">
             <div className={styles.inner}>
               <div className={styles["left-side"]}>
                 <img src={getEntityImg(personData.url, "people")} alt="" />
-                <div className={styles["person-info"]}>
-                  <h1>{personData.name}</h1>
-                  <p>{personData.birth_year}</p>
-                </div>
+                <h1>{personData.name}</h1>
+                <p>{personData.birth_year}</p>
               </div>
               <div className={styles["right-side"]}>
                 <PersonInfo personData={personData} />
