@@ -1,5 +1,7 @@
 :root {
   font-family: "Lexend", sans-serif;
+
+  --border-radius: 4px;
   /* THEME */
   --theme-light-bg: linear-gradient(
     to right bottom,

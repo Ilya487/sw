@@ -59,7 +59,7 @@ const Slider = ({ slides }) => {
   };
 
   return (
-    <div>
+    <div className={styles.slider}>
       <div
         className={styles.window}
         ref={windowRef}

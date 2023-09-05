@@ -1,0 +1,21 @@
+.person-info {
+  margin-bottom: 36px;
+  text-align: center;
+
+  th,
+  td {
+    padding-right: 29px;
+  }
+
+  th {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.5;
+  }
+
+  td {
+    font-size: 20px;
+  }
+}

@@ -1,10 +1,12 @@
 .slider-item {
   margin-right: 20px;
+  text-align: center;
 
   img {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
+    min-height: 180px;
     object-fit: cover;
-    min-height: 150px;
+    border-radius: var(--border-radius);
+    margin-bottom: 5px;
   }
 }

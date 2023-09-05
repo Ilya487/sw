@@ -33,24 +33,38 @@ const PersonPage = () => {
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <div>
+        <div className={styles["person-page"]}>
           <div className="container">
             <div className={styles.inner}>
               <div className={styles["left-side"]}>
                 <img src={getEntityImg(personData.url, "people")} alt="" />
-                <h1>{personData.name}</h1>
-                <p>{personData.birth_year}</p>
+                <div className={styles["person-info"]}>
+                  <h1>{personData.name}</h1>
+                  <p>{personData.birth_year}</p>
+                </div>
               </div>
               <div className={styles["right-side"]}>
                 <PersonInfo personData={personData} />
+
                 {personData.films.length > 0 && (
-                  <RelatedData urls={personData.films} />
+                  <div className={styles["related-data"]}>
+                    <h3 className={styles["slider-title"]}>Films</h3>
+                    <RelatedData urls={personData.films} />
+                  </div>
                 )}
+
                 {personData.starships.length > 0 && (
-                  <RelatedData urls={personData.starships} />
+                  <div className={styles["related-data"]}>
+                    <h3 className={styles["slider-title"]}>Starships</h3>
+                    <RelatedData urls={personData.starships} />
+                  </div>
                 )}
+
                 {personData.vehicles.length > 0 && (
-                  <RelatedData urls={personData.vehicles} />
+                  <div className={styles["related-data"]}>
+                    <h3 className={styles["slider-title"]}>Vehicles</h3>
+                    <RelatedData urls={personData.vehicles} />
+                  </div>
                 )}
               </div>
             </div>
