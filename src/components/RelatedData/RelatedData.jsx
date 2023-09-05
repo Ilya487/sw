@@ -5,6 +5,7 @@ import Slider from "./Slider/Slider";
 const RelatedData = ({ urls }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   async function getData() {
     setIsLoading(true);
@@ -13,6 +14,7 @@ const RelatedData = ({ urls }) => {
       setData(data);
     } catch (error) {
       console.log(error);
+      setIsError(true);
     } finally {
       setIsLoading(false);
     }
@@ -22,12 +24,17 @@ const RelatedData = ({ urls }) => {
     getData();
   }, []);
 
-  return isLoading ? (
+  return isError ? (
+    <p>Error!!!</p>
+  ) : isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <Slider slides={[...data, ...data, ...data]} />
+    <Slider
+      slides={[...data, ...data, ...data]}
+      slidesToShow={4}
+      slidesToScroll={2}
+    />
   );
-  //  <Slider slides={data} />;
 };
 
 export default RelatedData;

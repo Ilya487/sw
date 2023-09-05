@@ -16,11 +16,13 @@ const SliderItem = forwardRef(({ slide, width }, ref) => {
       style={{ minWidth: `${width}px`, maxWidth: `${width}px` }}
       ref={ref}
     >
-      <img
-        src={getEntityImg(slide.url, entity)}
-        alt={entity == "films" ? slide.title : slide.name}
-        onError={handleImageError}
-      />
+      <div className={styles["slide-img"]}>
+        <img
+          src={getEntityImg(slide.url, entity)}
+          alt={entity == "films" ? slide.title : slide.name}
+          onError={handleImageError}
+        />
+      </div>
       <p>{entity == "films" ? slide.title : slide.name}</p>
     </Link>
   );

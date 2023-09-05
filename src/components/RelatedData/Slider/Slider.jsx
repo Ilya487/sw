@@ -7,10 +7,7 @@ import { useStabilizeAfterResize } from "./hook/useStabilizeAfterResize";
 import { useSliderDragAndDrop } from "./hook/useSliderDragAndDrop";
 import clsx from "clsx";
 
-const SLIDES_TO_SHOW = 4;
-const SLIDES_TO_SCROLL = 3;
-
-const Slider = ({ slides }) => {
+const Slider = ({ slides, slidesToShow, slidesToScroll }) => {
   const [offset, setOffset] = useState(0);
   const [showedSlides, setShowedSlides] = useState(0);
 
@@ -21,7 +18,7 @@ const Slider = ({ slides }) => {
     slides,
     windowRef,
     slideRef,
-    SLIDES_TO_SHOW
+    slidesToShow
   );
 
   useStabilizeAfterResize(stepWidth, showedSlides, setOffset);
@@ -30,23 +27,23 @@ const Slider = ({ slides }) => {
     offset,
     setOffset,
     stepWidth,
-    SLIDES_TO_SHOW,
+    slidesToShow,
     setShowedSlides,
     slides.length
   );
 
   const setNextSlide = () => {
-    const newOffset = offset - stepWidth * SLIDES_TO_SCROLL;
-    const limit = -(stepWidth * (slides.length - SLIDES_TO_SHOW));
+    const newOffset = offset - stepWidth * slidesToScroll;
+    const limit = -(stepWidth * (slides.length - slidesToShow));
 
     if (newOffset < limit && offset <= limit) return;
 
-    setShowedSlides((actual) => actual + SLIDES_TO_SCROLL);
+    setShowedSlides((actual) => actual + slidesToScroll);
     setOffset(newOffset);
   };
 
   const setPrevSlide = () => {
-    const newOffset = offset + stepWidth * SLIDES_TO_SCROLL;
+    const newOffset = offset + stepWidth * slidesToScroll;
 
     if (newOffset >= 0) {
       setOffset(0);
@@ -54,7 +51,7 @@ const Slider = ({ slides }) => {
       return;
     }
 
-    setShowedSlides((actual) => actual - SLIDES_TO_SCROLL);
+    setShowedSlides((actual) => actual - slidesToScroll);
     setOffset(newOffset);
   };
 
@@ -87,7 +84,7 @@ const Slider = ({ slides }) => {
       <SliderControl
         setPrevSlide={setPrevSlide}
         setNextSlide={setNextSlide}
-        isLast={slides.length - showedSlides <= SLIDES_TO_SHOW}
+        isLast={slides.length - showedSlides <= slidesToShow}
         isFirst={showedSlides == 0}
       />
     </div>
