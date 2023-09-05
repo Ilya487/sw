@@ -25,9 +25,9 @@ const PersonPage = () => {
     }
   }
 
-  // useEffect(() => {
-  //   getInfo();
-  // }, []);
+  useEffect(() => {
+    getInfo();
+  }, []);
 
   return (
     <>

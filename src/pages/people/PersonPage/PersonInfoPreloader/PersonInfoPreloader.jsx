@@ -4,6 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import styles from "../PersonPage.module.scss";
 import sceletonStyle from "./PersonInfoPreloader.module.scss";
 import PersonInfoSceleton from "../PersonInfo/Preloader/PersonInfoSceleton";
+import RelatedDataPreloader from "../../../../components/RelatedData/Preloader/RelatedDataPreloader";
 
 const PersonInfoPreloader = () => {
   return (
@@ -19,23 +20,11 @@ const PersonInfoPreloader = () => {
             <Skeleton className={sceletonStyle.birthday} />
           </div>
           <div className={styles["right-side"]}>
-            {/* <PersonInfo personData={personData} /> */}
             <PersonInfoSceleton />
 
-            <div className={styles["related-data"]}>
-              {/* <h3 className={styles["slider-title"]}>Films</h3>*/}
-              {/* <RelatedData urls={personData.films} /> */}
-            </div>
-
-            <div className={styles["related-data"]}>
-              {/* <h3 className={styles["slider-title"]}>Films</h3>*/}
-              {/* <RelatedData urls={personData.films} /> */}
-            </div>
-
-            <div className={styles["related-data"]}>
-              {/* <h3 className={styles["slider-title"]}>Films</h3>*/}
-              {/* <RelatedData urls={personData.films} /> */}
-            </div>
+            <RelatedDataPreloader countSlides={4} />
+            <RelatedDataPreloader countSlides={4} />
+            <RelatedDataPreloader countSlides={4} />
           </div>
         </div>
       </div>
