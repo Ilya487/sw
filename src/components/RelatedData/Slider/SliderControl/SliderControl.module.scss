@@ -1,10 +1,44 @@
 .button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+  background-color: transparent;
+  padding: 0 5px;
+  border-radius: var(--border-radius);
+
+  svg {
+    color: transparent;
+    transition: all 0.3s ease-out;
+  }
+
   &--left {
     margin-right: 20px;
+    left: 0;
   }
+
   &--right {
+    right: 20px;
   }
+
   &--hide {
     display: none;
+  }
+
+  &:hover {
+    opacity: 1;
+
+    svg {
+      color: #fff;
+    }
+  }
+
+  &--right:hover {
+    box-shadow: -20px 0px 25px 0px #000 inset;
+  }
+
+  &--left:hover {
+    box-shadow: 20px 0px 25px 0px #000 inset;
   }
 }

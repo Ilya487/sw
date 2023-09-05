@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./SliderControl.module.scss";
 import clsx from "clsx";
+import { HiOutlineArrowLeft } from "react-icons/hi";
+import { HiOutlineArrowRight } from "react-icons/hi";
 
 const SliderControl = ({ setPrevSlide, setNextSlide, isFirst, isLast }) => {
   return (
@@ -13,7 +15,7 @@ const SliderControl = ({ setPrevSlide, setNextSlide, isFirst, isLast }) => {
           isFirst && styles["button--hide"]
         )}
       >
-        prev
+        <HiOutlineArrowLeft size={30} />
       </button>
       <button
         onClick={setNextSlide}
@@ -23,7 +25,7 @@ const SliderControl = ({ setPrevSlide, setNextSlide, isFirst, isLast }) => {
           isLast && styles["button--hide"]
         )}
       >
-        next
+        <HiOutlineArrowRight size={30} />
       </button>
     </>
   );
