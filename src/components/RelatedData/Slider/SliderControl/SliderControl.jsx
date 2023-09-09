@@ -4,7 +4,13 @@ import clsx from "clsx";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { HiOutlineArrowRight } from "react-icons/hi";
 
-const SliderControl = ({ setPrevSlide, setNextSlide, isFirst, isLast }) => {
+const SliderControl = ({
+  setPrevSlide,
+  setNextSlide,
+  isFirst,
+  isLast,
+  isDraging,
+}) => {
   return (
     <>
       <button
@@ -12,7 +18,8 @@ const SliderControl = ({ setPrevSlide, setNextSlide, isFirst, isLast }) => {
         className={clsx(
           styles.button,
           styles["button--left"],
-          isFirst && styles["button--hide"]
+          isFirst && styles["button--hide"],
+          isDraging && styles["button--hide"]
         )}
       >
         <HiOutlineArrowLeft size={30} />
@@ -22,7 +29,8 @@ const SliderControl = ({ setPrevSlide, setNextSlide, isFirst, isLast }) => {
         className={clsx(
           styles.button,
           styles["button--right"],
-          isLast && styles["button--hide"]
+          isLast && styles["button--hide"],
+          isDraging && styles["button--hide"]
         )}
       >
         <HiOutlineArrowRight size={30} />

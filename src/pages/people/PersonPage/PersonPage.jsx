@@ -38,7 +38,11 @@ const PersonPage = () => {
           <div className="container">
             <div className={styles.inner}>
               <div className={styles["left-side"]}>
-                <img src={getEntityImg(personData.url, "people")} alt="" />
+                <div className={styles["character-img-wrapper"]}>
+                  <div className={styles["character-img"]}>
+                    <img src={getEntityImg(personData.url, "people")} alt="" />
+                  </div>
+                </div>
                 <h1>{personData.name}</h1>
                 <p>{personData.birth_year}</p>
               </div>

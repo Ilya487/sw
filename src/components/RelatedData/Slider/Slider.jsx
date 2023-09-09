@@ -86,6 +86,7 @@ const Slider = ({ slides, slidesToShow, slidesToScroll }) => {
         setNextSlide={setNextSlide}
         isLast={slides.length - showedSlides <= slidesToShow}
         isFirst={showedSlides == 0}
+        isDraging={isDraging}
       />
     </div>
   );

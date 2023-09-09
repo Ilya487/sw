@@ -31,11 +31,8 @@ export const useRecalculationSlideWidth = (
   };
 
   useEffect(() => {
-    calculateSlideWidth();
-  }, [slides]);
-
-  useEffect(() => {
     window.addEventListener("resize", calculateSlideWidth);
+    calculateSlideWidth();
 
     return () => {
       window.removeEventListener("resize", calculateSlideWidth);
