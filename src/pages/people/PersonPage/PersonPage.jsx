@@ -52,21 +52,33 @@ const PersonPage = () => {
                 {personData.films.length > 0 && (
                   <div className={styles["related-data"]}>
                     <h3 className={styles["slider-title"]}>Films</h3>
-                    <RelatedData urls={personData.films} />
+                    <RelatedData
+                      urls={personData.films}
+                      slidesToShow={4}
+                      slidesToScroll={2}
+                    />
                   </div>
                 )}
 
                 {personData.starships.length > 0 && (
                   <div className={styles["related-data"]}>
                     <h3 className={styles["slider-title"]}>Starships</h3>
-                    <RelatedData urls={personData.starships} />
+                    <RelatedData
+                      urls={personData.starships}
+                      slidesToShow={4}
+                      slidesToScroll={2}
+                    />
                   </div>
                 )}
 
                 {personData.vehicles.length > 0 && (
                   <div className={styles["related-data"]}>
                     <h3 className={styles["slider-title"]}>Vehicles</h3>
-                    <RelatedData urls={personData.vehicles} />
+                    <RelatedData
+                      urls={personData.vehicles}
+                      slidesToShow={4}
+                      slidesToScroll={2}
+                    />
                   </div>
                 )}
               </div>

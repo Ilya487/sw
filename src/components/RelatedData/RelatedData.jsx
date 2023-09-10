@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { makeConcurrentRequest } from "../../utils/makeConcurrentRequest";
 import Slider from "./Slider/Slider";
+import Spinner from "./Spinner/Spinner";
 
-const RelatedData = ({ urls }) => {
+const RelatedData = ({ urls, slidesToShow, slidesToScroll }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -27,12 +28,12 @@ const RelatedData = ({ urls }) => {
   return isError ? (
     <p>Error!!!</p>
   ) : isLoading ? (
-    <h1>Loading...</h1>
+    <Spinner />
   ) : (
     <Slider
       slides={[...data, ...data, ...data]}
-      slidesToShow={4}
-      slidesToScroll={2}
+      slidesToShow={slidesToShow}
+      slidesToScroll={slidesToScroll}
     />
   );
 };
