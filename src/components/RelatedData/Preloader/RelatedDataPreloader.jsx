@@ -1,6 +1,6 @@
 import React from "react";
 import skeletonStyles from "./RelatedDataPreloader.module.scss";
-import styles from "../../../pages/people/PersonPage/PersonPage.module.scss";
+import styles from "../../../pages/people/PersonPage/AdditionalInformation/AdditionalInformation.module.scss";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 

@@ -4,8 +4,8 @@ import { getDetailedDescription } from "../../../API/getDetailedDescription";
 import styles from "./PersonPage.module.scss";
 import { getEntityImg } from "../../../utils/getEntityImg";
 import PersonInfo from "./PersonInfo/PersonInfo";
-import RelatedData from "../../../components/RelatedData/RelatedData";
 import PersonInfoPreloader from "./PersonInfoPreloader/PersonInfoPreloader";
+import AdditionalInformation from "./AdditionalInformation/AdditionalInformation";
 
 const PersonPage = () => {
   const [personData, setPersonData] = useState({});
@@ -48,39 +48,11 @@ const PersonPage = () => {
               </div>
               <div className={styles["right-side"]}>
                 <PersonInfo personData={personData} />
-
-                {personData.films.length > 0 && (
-                  <div className={styles["related-data"]}>
-                    <h3 className={styles["slider-title"]}>Films</h3>
-                    <RelatedData
-                      urls={personData.films}
-                      slidesToShow={4}
-                      slidesToScroll={2}
-                    />
-                  </div>
-                )}
-
-                {personData.starships.length > 0 && (
-                  <div className={styles["related-data"]}>
-                    <h3 className={styles["slider-title"]}>Starships</h3>
-                    <RelatedData
-                      urls={personData.starships}
-                      slidesToShow={4}
-                      slidesToScroll={2}
-                    />
-                  </div>
-                )}
-
-                {personData.vehicles.length > 0 && (
-                  <div className={styles["related-data"]}>
-                    <h3 className={styles["slider-title"]}>Vehicles</h3>
-                    <RelatedData
-                      urls={personData.vehicles}
-                      slidesToShow={4}
-                      slidesToScroll={2}
-                    />
-                  </div>
-                )}
+                <AdditionalInformation
+                  data={personData}
+                  slidesToShow={4}
+                  slidesToScroll={2}
+                />
               </div>
             </div>
           </div>
