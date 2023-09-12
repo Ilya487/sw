@@ -46,6 +46,7 @@
 .character-img-wrapper {
   min-width: 360px;
   max-width: 360px;
+  position: relative;
 
   @media (max-width: 600px) {
     min-width: 300px;
@@ -54,6 +55,15 @@
   @media (max-width: 380px) {
     min-width: 100%;
     max-width: 100%;
+  }
+}
+.favorite-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(25%, -25%);
+  path {
+    fill: #363637;
   }
 }
 .character-img {

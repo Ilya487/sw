@@ -1,6 +1,7 @@
 .standart {
   width: 33px;
   height: 33px;
+  cursor: pointer;
   path {
     transition: all 0.3s ease-in;
     fill: transparent;
@@ -8,6 +9,6 @@
 }
 .active {
   path {
-    fill: red;
+    fill: red !important;
   }
 }

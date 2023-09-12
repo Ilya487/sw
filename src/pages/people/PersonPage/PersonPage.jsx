@@ -7,6 +7,7 @@ import PersonInfo from "./PersonInfo/PersonInfo";
 import PersonInfoPreloader from "./PersonInfoPreloader/PersonInfoPreloader";
 import AdditionalInformation from "./AdditionalInformation/AdditionalInformation";
 import { useSliderMatchMedia } from "../../../hooks/useSliderMatchMedia";
+import FavoriteBtn from "../../../components/UI/FavoriteBtn/FavoriteBtn";
 
 const PersonPage = () => {
   const [personData, setPersonData] = useState({});
@@ -63,6 +64,10 @@ const PersonPage = () => {
                   <div className={styles["character-img"]}>
                     <img src={getEntityImg(personData.url, "people")} alt="" />
                   </div>
+                  <FavoriteBtn
+                    item={personData}
+                    className={styles["favorite-btn"]}
+                  />
                 </div>
                 <h1>{personData.name}</h1>
                 <p>{personData.birth_year}</p>
