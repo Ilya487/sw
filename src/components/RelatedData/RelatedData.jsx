@@ -32,6 +32,7 @@ const RelatedData = ({ urls, slidesToShow, slidesToScroll }) => {
   ) : (
     <Slider
       slides={[...data, ...data, ...data]}
+      // slides={data}
       slidesToShow={slidesToShow}
       slidesToScroll={slidesToScroll}
     />

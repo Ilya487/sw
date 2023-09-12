@@ -1,7 +1,6 @@
 .person-info {
   margin-bottom: 25px;
   text-align: center;
-
   th,
   td {
     padding-right: 29px;
@@ -17,5 +16,36 @@
 
   td {
     font-size: 20px;
+  }
+  @media (max-width: 560px) {
+    th,
+    td {
+      padding-right: 17px;
+    }
+    td {
+      font-size: 18px;
+    }
+  }
+  @media (max-width: 460px) {
+    width: 100%;
+
+    th {
+      display: none;
+    }
+    tr {
+      display: block;
+    }
+    td {
+      display: block;
+      text-align: right;
+      padding: 0;
+    }
+    td + td {
+      margin-top: 8px;
+    }
+    td::before {
+      content: attr(aria-label);
+      float: left;
+    }
   }
 }

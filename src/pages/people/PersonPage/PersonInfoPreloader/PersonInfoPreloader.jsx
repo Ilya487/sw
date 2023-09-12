@@ -6,25 +6,27 @@ import sceletonStyle from "./PersonInfoPreloader.module.scss";
 import PersonInfoSceleton from "../PersonInfo/Preloader/PersonInfoSceleton";
 import RelatedDataPreloader from "../../../../components/RelatedData/Preloader/RelatedDataPreloader";
 
-const PersonInfoPreloader = () => {
+const PersonInfoPreloader = ({ slidesToShow }) => {
   return (
     <div className={styles["person-page"]}>
       <div className="container">
         <div className={styles.inner}>
           <div className={styles["left-side"]}>
-            <Skeleton className={sceletonStyle.img} />
+            <div className={styles["character-img-wrapper"]}>
+              <Skeleton containerClassName={sceletonStyle.img} />
+            </div>
 
-            <Skeleton className={sceletonStyle.name} />
-            <Skeleton className={sceletonStyle.name} />
+            <Skeleton containerClassName={sceletonStyle.name} />
+            <Skeleton containerClassName={sceletonStyle.name} />
 
             <Skeleton className={sceletonStyle.birthday} />
           </div>
           <div className={styles["right-side"]}>
             <PersonInfoSceleton />
 
-            <RelatedDataPreloader countSlides={4} />
-            <RelatedDataPreloader countSlides={4} />
-            <RelatedDataPreloader countSlides={4} />
+            <RelatedDataPreloader countSlides={slidesToShow} />
+            <RelatedDataPreloader countSlides={slidesToShow} />
+            <RelatedDataPreloader countSlides={slidesToShow} />
           </div>
         </div>
       </div>

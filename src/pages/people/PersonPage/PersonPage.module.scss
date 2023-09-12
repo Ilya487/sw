@@ -4,6 +4,10 @@
 
 .inner {
   display: flex;
+
+  @media (max-width: 985px) {
+    flex-direction: column;
+  }
 }
 
 .left-side {
@@ -16,11 +20,41 @@
     margin-bottom: 10px;
     margin-right: 15px;
   }
+
+  @media (max-width: 985px) {
+    margin-right: 0;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      max-width: none;
+      text-align: center;
+    }
+  }
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 35px;
+    }
+    p {
+      font-size: 15px;
+    }
+  }
 }
 
 .character-img-wrapper {
   min-width: 360px;
   max-width: 360px;
+
+  @media (max-width: 600px) {
+    min-width: 300px;
+    max-width: 300px;
+  }
+  @media (max-width: 380px) {
+    min-width: 100%;
+    max-width: 100%;
+  }
 }
 .character-img {
   width: 100%;

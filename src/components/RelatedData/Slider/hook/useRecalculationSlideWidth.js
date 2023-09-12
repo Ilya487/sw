@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 
 export const useRecalculationSlideWidth = (
-  slides,
   windowRef,
   slideRef,
-  SLIDES_TO_SHOW
+  slidesToShow
 ) => {
   const [itemWidth, setItemWidth] = useState(0);
   const [stepWidth, setStepWidth] = useState(0);
 
   const calculateSlideMargins = () => {
-    const style = getComputedStyle(slideRef.current);
+    const style = window.getComputedStyle(slideRef.current);
     const marginLeft = parseInt(style.marginLeft);
     const marginRight = parseInt(style.marginRight);
 
@@ -22,9 +21,9 @@ export const useRecalculationSlideWidth = (
 
     const windowWidth = windowRef.current.getBoundingClientRect().width;
 
-    const updatedStepWidth = windowWidth / SLIDES_TO_SHOW;
+    const updatedStepWidth = windowWidth / slidesToShow;
 
-    const updatedItemWidth = windowWidth / SLIDES_TO_SHOW - margins;
+    const updatedItemWidth = windowWidth / slidesToShow - margins;
 
     setStepWidth(updatedStepWidth);
     setItemWidth(updatedItemWidth);
@@ -37,7 +36,7 @@ export const useRecalculationSlideWidth = (
     return () => {
       window.removeEventListener("resize", calculateSlideWidth);
     };
-  }, []);
+  }, [slidesToShow]);
 
   return { itemWidth, stepWidth };
 };

@@ -7,7 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const RelatedDataPreloader = ({ countSlides }) => {
   return (
     <div className={styles["related-data"]}>
-      <Skeleton className={skeletonStyles.title} />
+      <Skeleton containerClassName={skeletonStyles.title} />
       <div className={skeletonStyles.slider}>
         {Array(countSlides)
           .fill(0)

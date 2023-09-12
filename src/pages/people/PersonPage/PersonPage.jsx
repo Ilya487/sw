@@ -18,20 +18,13 @@ const PersonPage = () => {
         media: "(max-width: 640px)",
         options: {
           slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        media: "(max-width: 480px)",
-        options: {
-          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        media: "(max-width: 400px)",
+        media: "(max-width: 440px)",
         options: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },

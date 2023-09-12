@@ -19,7 +19,7 @@
   }
 
   &--right {
-    right: 20px;
+    right: 10px;
   }
 
   &--hide {
@@ -40,5 +40,9 @@
 
   &--left:hover {
     box-shadow: 20px 0px 23px 0px #000 inset;
+  }
+
+  @media (hover: none) {
+    display: none;
   }
 }

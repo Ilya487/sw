@@ -16,12 +16,12 @@ const PersonInfo = ({ personData }) => {
       </thead>
       <tbody>
         <tr>
-          <td>{personData.height}</td>
-          <td>{personData.mass}</td>
-          <td>{personData.hair_color}</td>
-          <td>{personData.skin_color}</td>
-          <td>{personData.eye_color}</td>
-          <td>{personData.gender}</td>
+          <td aria-label="Height">{personData.height}</td>
+          <td aria-label="Mass">{personData.mass}</td>
+          <td aria-label="Hair">{personData.hair_color}</td>
+          <td aria-label="Skin">{personData.skin_color}</td>
+          <td aria-label="Eye">{personData.eye_color}</td>
+          <td aria-label="Gender">{personData.gender}</td>
         </tr>
       </tbody>
     </table>

@@ -15,7 +15,6 @@ const Slider = ({ slides, slidesToShow, slidesToScroll }) => {
   const slideRef = useRef();
 
   const { itemWidth, stepWidth } = useRecalculationSlideWidth(
-    slides,
     windowRef,
     slideRef,
     slidesToShow
