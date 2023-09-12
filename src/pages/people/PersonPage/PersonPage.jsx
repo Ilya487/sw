@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDetailedDescription } from "../../../API/getDetailedDescription";
 import styles from "./PersonPage.module.scss";
@@ -6,10 +6,38 @@ import { getEntityImg } from "../../../utils/getEntityImg";
 import PersonInfo from "./PersonInfo/PersonInfo";
 import PersonInfoPreloader from "./PersonInfoPreloader/PersonInfoPreloader";
 import AdditionalInformation from "./AdditionalInformation/AdditionalInformation";
+import { useSliderMatchMedia } from "../../../hooks/useSliderMatchMedia";
 
 const PersonPage = () => {
   const [personData, setPersonData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  const sliderOption = useSliderMatchMedia(
+    [
+      {
+        media: "(max-width: 640px)",
+        options: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        media: "(max-width: 480px)",
+        options: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        media: "(max-width: 400px)",
+        options: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+    { slidesToShow: 4, slidesToScroll: 2 }
+  );
 
   const { id } = useParams();
 
@@ -32,7 +60,7 @@ const PersonPage = () => {
   return (
     <>
       {isLoading ? (
-        <PersonInfoPreloader />
+        <PersonInfoPreloader slidesToShow={sliderOption.slidesToShow} />
       ) : (
         <div className={styles["person-page"]}>
           <div className="container">
@@ -48,10 +76,11 @@ const PersonPage = () => {
               </div>
               <div className={styles["right-side"]}>
                 <PersonInfo personData={personData} />
+
                 <AdditionalInformation
                   data={personData}
-                  slidesToShow={4}
-                  slidesToScroll={2}
+                  slidesToShow={sliderOption.slidesToShow}
+                  slidesToScroll={sliderOption.slidesToScroll}
                 />
               </div>
             </div>
