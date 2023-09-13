@@ -62,7 +62,10 @@ const PersonPage = () => {
               <div className={styles["left-side"]}>
                 <div className={styles["character-img-wrapper"]}>
                   <div className={styles["character-img"]}>
-                    <img src={getEntityImg(personData.url, "people")} alt="" />
+                    <img
+                      src={getEntityImg(personData.url, "people")}
+                      alt={personData.name}
+                    />
                   </div>
                   <FavoriteBtn
                     item={personData}
