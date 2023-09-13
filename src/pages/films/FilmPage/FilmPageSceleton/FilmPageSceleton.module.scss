@@ -1,0 +1,33 @@
+.img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin-bottom: 10px;
+  padding-bottom: 135%;
+
+  span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+.title {
+  display: block;
+
+  span {
+    height: 20px;
+  }
+
+  @media (max-width: 800px) {
+    max-width: 358px;
+    margin: 0 auto;
+  }
+}
+.description {
+  display: block;
+  margin-bottom: 15px;
+
+  span {
+    height: 12px;
+  }
+}

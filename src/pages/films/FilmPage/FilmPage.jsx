@@ -6,6 +6,7 @@ import styles from "./FilmPage.module.scss";
 import RelatedData from "../../../components/RelatedData/RelatedData";
 import { getEntityImg } from "../../../utils/getEntityImg";
 import FavoriteBtn from "../../../components/UI/FavoriteBtn/FavoriteBtn";
+import FilmPageSceleton from "./FilmPageSceleton/FilmPageSceleton";
 
 const FilmPage = () => {
   const [filmData, setFilmData] = useState();
@@ -30,7 +31,7 @@ const FilmPage = () => {
   }, []);
 
   return isLoading ? (
-    <p>Loading...</p>
+    <FilmPageSceleton />
   ) : (
     <div className={styles["film-page"]}>
       <div className="container">
