@@ -4,7 +4,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import PersonPage from "./pages/people/PersonPage/PersonPage";
 import Layout from "./components/Layout/Layout";
 import SearchPage from "./pages/SearchPage";
-import FilmsPage from "./pages/FilmsPage";
+import FilmsPage from "./pages/films/FilmsPage";
+import FilmPage from "./pages/films/FilmPage/FilmPage";
 import PlanetsPage from "./pages/PlanetsPage";
 import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
@@ -26,6 +27,7 @@ function App() {
               <Route path="search" element={<SearchPage />} />
 
               <Route path="films" element={<FilmsPage />} />
+              <Route path="films/:id" element={<FilmPage />} />
 
               <Route path="planets" element={<PlanetsPage />} />
 

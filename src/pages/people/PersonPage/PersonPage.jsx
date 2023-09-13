@@ -10,7 +10,7 @@ import { useSliderMatchMedia } from "../../../hooks/useSliderMatchMedia";
 import FavoriteBtn from "../../../components/UI/FavoriteBtn/FavoriteBtn";
 
 const PersonPage = () => {
-  const [personData, setPersonData] = useState({});
+  const [personData, setPersonData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   const sliderOption = useSliderMatchMedia(
