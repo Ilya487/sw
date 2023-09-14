@@ -14,7 +14,7 @@ const AdditionalInformation = ({
       {entityRelatedData[entity].map((category) => {
         if (data[category].length > 0) {
           return (
-            <div className={styles["related-data"]}>
+            <div className={styles["related-data"]} key={category}>
               <h3 className={styles["slider-title"]}>{category}</h3>
               <RelatedData
                 urls={data[category]}
