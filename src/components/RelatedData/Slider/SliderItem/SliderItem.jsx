@@ -5,11 +5,26 @@ import { Link } from "react-router-dom";
 import { getEntityNumber } from "../../../../utils/getEntityNumber";
 import styles from "./SliderItem.module.scss";
 import { handleImageError } from "../../../../utils/handleImageError";
+import errorImg from "../../../../assets/slideErrorImg.png";
 
 const SliderItem = forwardRef(({ slide, width }, ref) => {
-  const entity = defineEntity(slide.url);
+  const entity = slide.url && defineEntity(slide.url);
 
-  return (
+  return slide.reason ? (
+    <div
+      style={{
+        minWidth: `${width}px`,
+        maxWidth: `${width}px,`,
+      }}
+      className={styles["slider-item"]}
+      ref={ref}
+    >
+      <div className={styles["slide-img"]}>
+        <img src={errorImg} alt="error" />
+      </div>
+      <p>Faild to fetch</p>
+    </div>
+  ) : (
     <Link
       to={`/${entity}/${getEntityNumber(slide.url)}`}
       className={styles["slider-item"]}

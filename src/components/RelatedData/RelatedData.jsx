@@ -6,7 +6,6 @@ import Spinner from "../Spinner/Spinner";
 const RelatedData = ({ urls, slidesToShow, slidesToScroll }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
 
   async function getData() {
     setIsLoading(true);
@@ -15,7 +14,6 @@ const RelatedData = ({ urls, slidesToShow, slidesToScroll }) => {
       setData(data);
     } catch (error) {
       console.log(error);
-      setIsError(true);
     } finally {
       setIsLoading(false);
     }
@@ -25,9 +23,7 @@ const RelatedData = ({ urls, slidesToShow, slidesToScroll }) => {
     getData();
   }, []);
 
-  return isError ? (
-    <p>Error!!!</p>
-  ) : isLoading ? (
+  return isLoading ? (
     <Spinner />
   ) : (
     <Slider
