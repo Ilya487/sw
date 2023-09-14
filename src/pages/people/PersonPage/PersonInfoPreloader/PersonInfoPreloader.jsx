@@ -4,7 +4,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import styles from "../PersonPage.module.scss";
 import sceletonStyle from "./PersonInfoPreloader.module.scss";
 import PersonInfoSceleton from "../PersonInfo/Preloader/PersonInfoSceleton";
-import RelatedDataPreloader from "../../../../components/RelatedData/Preloader/RelatedDataPreloader";
 import AdditionalInformationSkeleton from "../../../../components/AdditionalInformation/AdditionalInformationSkeleton/AdditionalInformationSkeleton";
 
 const PersonInfoPreloader = ({ slidesToShow }) => {

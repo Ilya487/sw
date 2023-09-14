@@ -3,15 +3,42 @@ import { getDetailedDescription } from "../../../API/getDetailedDescription";
 import { useParams } from "react-router";
 import FilmInfo from "./FilmInfo/FilmInfo";
 import styles from "./FilmPage.module.scss";
-import RelatedData from "../../../components/RelatedData/RelatedData";
 import { getEntityImg } from "../../../utils/getEntityImg";
 import FavoriteBtn from "../../../components/UI/FavoriteBtn/FavoriteBtn";
 import FilmPageSceleton from "./FilmPageSceleton/FilmPageSceleton";
 import AdditionalInformation from "../../../components/AdditionalInformation/AdditionalInformation";
+import { useSliderMatchMedia } from "../../../hooks/useSliderMatchMedia";
 
 const FilmPage = () => {
   const [filmData, setFilmData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const sliderOption = useSliderMatchMedia(
+    [
+      {
+        media: "(max-width: 720px)",
+        options: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        media: "(max-width: 560px)",
+        options: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        media: "(max-width: 400px)",
+        options: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+    { slidesToShow: 5, slidesToScroll: 2 }
+  );
 
   const { id } = useParams();
 
@@ -32,7 +59,7 @@ const FilmPage = () => {
   }, []);
 
   return isLoading ? (
-    <FilmPageSceleton />
+    <FilmPageSceleton slidesToShow={sliderOption.slidesToShow} />
   ) : (
     <div className={styles["film-page"]}>
       <div className="container">
@@ -60,8 +87,8 @@ const FilmPage = () => {
         <AdditionalInformation
           entity="films"
           data={filmData}
-          slidesToShow={5}
-          slidesToScroll={2}
+          slidesToShow={sliderOption.slidesToShow}
+          slidesToScroll={sliderOption.slidesToScroll}
         />
       </div>
     </div>

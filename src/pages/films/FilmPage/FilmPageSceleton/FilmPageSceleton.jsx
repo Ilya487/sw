@@ -4,8 +4,9 @@ import "react-loading-skeleton/dist/skeleton.css";
 import styles from "./FilmPageSceleton.module.scss";
 import layoutStyle from "../FilmPage.module.scss";
 import FilmInfoPreloader from "../FilmInfo/FilmInfoPreloader/FilmInfoPreloader";
+import AdditionalInformationSkeleton from "../../../../components/AdditionalInformation/AdditionalInformationSkeleton/AdditionalInformationSkeleton";
 
-const FilmPageSceleton = () => {
+const FilmPageSceleton = ({ slidesToShow }) => {
   return (
     <div className={layoutStyle["film-page"]}>
       <div className="container">
@@ -22,6 +23,10 @@ const FilmPageSceleton = () => {
             <FilmInfoPreloader />
           </div>
         </div>
+        <AdditionalInformationSkeleton
+          entity="films"
+          slidesToShow={slidesToShow}
+        />
       </div>
     </div>
   );
