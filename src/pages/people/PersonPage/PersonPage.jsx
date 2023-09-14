@@ -5,7 +5,7 @@ import styles from "./PersonPage.module.scss";
 import { getEntityImg } from "../../../utils/getEntityImg";
 import PersonInfo from "./PersonInfo/PersonInfo";
 import PersonInfoPreloader from "./PersonInfoPreloader/PersonInfoPreloader";
-import AdditionalInformation from "./AdditionalInformation/AdditionalInformation";
+import AdditionalInformation from "../../../components/AdditionalInformation/AdditionalInformation";
 import { useSliderMatchMedia } from "../../../hooks/useSliderMatchMedia";
 import FavoriteBtn from "../../../components/UI/FavoriteBtn/FavoriteBtn";
 
@@ -77,8 +77,8 @@ const PersonPage = () => {
               </div>
               <div className={styles["right-side"]}>
                 <PersonInfo personData={personData} />
-
                 <AdditionalInformation
+                  entity={"people"}
                   data={personData}
                   slidesToShow={sliderOption.slidesToShow}
                   slidesToScroll={sliderOption.slidesToScroll}

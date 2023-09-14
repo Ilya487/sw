@@ -7,6 +7,7 @@ import RelatedData from "../../../components/RelatedData/RelatedData";
 import { getEntityImg } from "../../../utils/getEntityImg";
 import FavoriteBtn from "../../../components/UI/FavoriteBtn/FavoriteBtn";
 import FilmPageSceleton from "./FilmPageSceleton/FilmPageSceleton";
+import AdditionalInformation from "../../../components/AdditionalInformation/AdditionalInformation";
 
 const FilmPage = () => {
   const [filmData, setFilmData] = useState();
@@ -56,30 +57,11 @@ const FilmPage = () => {
             <FilmInfo filmData={filmData} />
           </div>
         </div>
-        <RelatedData
+        <AdditionalInformation
+          entity="films"
+          data={filmData}
           slidesToShow={5}
           slidesToScroll={2}
-          urls={filmData.characters}
-        />
-        <RelatedData
-          slidesToShow={5}
-          slidesToScroll={2}
-          urls={filmData.planets}
-        />
-        <RelatedData
-          slidesToShow={5}
-          slidesToScroll={2}
-          urls={filmData.species}
-        />
-        <RelatedData
-          slidesToShow={5}
-          slidesToScroll={2}
-          urls={filmData.starships}
-        />
-        <RelatedData
-          slidesToShow={5}
-          slidesToScroll={2}
-          urls={filmData.vehicles}
         />
       </div>
     </div>
