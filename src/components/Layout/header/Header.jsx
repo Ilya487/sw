@@ -24,27 +24,27 @@ const Header = () => {
         Search
       </NavLink>
 
-      <NavLink to="people" style={setActive}>
+      <NavLink to="people?page=1" style={setActive}>
         People
       </NavLink>
 
-      <NavLink to="films" style={setActive}>
+      <NavLink to="films?page=1" style={setActive}>
         Films
       </NavLink>
 
-      <NavLink to="planets" style={setActive}>
+      <NavLink to="planets?page=1" style={setActive}>
         Planets
       </NavLink>
 
-      <NavLink to="species" style={setActive}>
+      <NavLink to="species?page=1" style={setActive}>
         Species
       </NavLink>
 
-      <NavLink to="starships" style={setActive}>
+      <NavLink to="starships?page=1" style={setActive}>
         Starships
       </NavLink>
 
-      <NavLink to="vehicles" style={setActive}>
+      <NavLink to="vehicles?page=1" style={setActive}>
         Vehicles
       </NavLink>
 

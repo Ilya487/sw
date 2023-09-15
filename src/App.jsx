@@ -6,14 +6,13 @@ import Layout from "./components/Layout/Layout";
 import SearchPage from "./pages/SearchPage";
 import FilmsPage from "./pages/films/FilmsPage";
 import FilmPage from "./pages/films/FilmPage/FilmPage";
-import PlanetsPage from "./pages/planets/PlanetsPage";
+import PlanetsPage from "./pages/PlanetsPage";
 import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
 import FavoriteProvider from "./providers/FavoriteProvider";
 import FavoritePage from "./pages/FavoritePage";
 import ThemeProvider from "./providers/ThemeProvider";
-import PlanetPage from "./pages/planets/PlanetPage/PlanetPage";
 import EntityDetailPage from "./components/EntityDetailePage/EntityDetailedPage";
 
 function App() {
