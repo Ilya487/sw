@@ -4,4 +4,5 @@ export const entityRelatedData = {
   planets: ["residents", "films"],
   species: ["people", "films"],
   starships: ["pilots", "films"],
+  vehicles: ["pilots", "films"],
 };

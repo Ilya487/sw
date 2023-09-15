@@ -6,13 +6,15 @@ import Layout from "./components/Layout/Layout";
 import SearchPage from "./pages/SearchPage";
 import FilmsPage from "./pages/films/FilmsPage";
 import FilmPage from "./pages/films/FilmPage/FilmPage";
-import PlanetsPage from "./pages/PlanetsPage";
+import PlanetsPage from "./pages/planets/PlanetsPage";
 import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
 import FavoriteProvider from "./providers/FavoriteProvider";
 import FavoritePage from "./pages/FavoritePage";
 import ThemeProvider from "./providers/ThemeProvider";
+import PlanetPage from "./pages/planets/PlanetPage/PlanetPage";
+import EntityDetailPage from "./components/EntityDetailePage/EntityDetailedPage";
 
 function App() {
   return (
@@ -30,12 +32,28 @@ function App() {
               <Route path="films/:id" element={<FilmPage />} />
 
               <Route path="planets" element={<PlanetsPage />} />
+              <Route
+                path="planets/:id"
+                element={<EntityDetailPage entity="planets" />}
+              />
 
               <Route path="species" element={<SpeciesPage />} />
+              <Route
+                path="species/:id"
+                element={<EntityDetailPage entity="species" />}
+              />
 
               <Route path="starships" element={<StarshipsPage />} />
+              <Route
+                path="starships/:id"
+                element={<EntityDetailPage entity="starships" />}
+              />
 
               <Route path="vehicles" element={<VehiclesPage />} />
+              <Route
+                path="vehicles/:id"
+                element={<EntityDetailPage entity="vehicles" />}
+              />
 
               <Route path="favorite" element={<FavoritePage />} />
 
