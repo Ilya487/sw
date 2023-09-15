@@ -1,0 +1,28 @@
+$border: 3px solid #7e7d7d;
+
+.info {
+  border: $border;
+  border-radius: 4px;
+}
+
+.info-row {
+  display: flex;
+  padding: 5px;
+
+  & + & {
+    border-top: $border;
+    margin-top: 15px;
+  }
+}
+.info-row__left {
+  margin-right: auto;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+.info-row__right {
+  margin-left: 15px;
+  flex-basis: 50%;
+  text-align: right;
+}
