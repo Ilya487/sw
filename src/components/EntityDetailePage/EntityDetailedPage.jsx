@@ -7,6 +7,8 @@ import { useParams } from "react-router";
 import EntityInfo from "./EntityInfo/EntityInfo";
 import { getEntityImg } from "../../utils/getEntityImg";
 import FavoriteBtn from "../UI/FavoriteBtn/FavoriteBtn";
+import EntityDetailPageSkeleton from "./EntityDetailPageSkeleton/EntityDetailPageSkeleton";
+import { handleImageError } from "../../utils/handleImageError";
 
 const EntityDetailPage = ({ entity }) => {
   const [entityData, setEntityData] = useState();
@@ -58,8 +60,10 @@ const EntityDetailPage = ({ entity }) => {
   }, []);
 
   return isLoading ? (
-    // <FilmPageSceleton slidesToShow={sliderOption.slidesToShow} />
-    <p>Loading...</p>
+    <EntityDetailPageSkeleton
+      entity={entity}
+      slidesToShow={sliderOption.slidesToShow}
+    />
   ) : (
     <div className={styles["film-page"]}>
       <div className="container">
@@ -70,6 +74,7 @@ const EntityDetailPage = ({ entity }) => {
                 <img
                   src={getEntityImg(entityData.url, entity)}
                   alt={entityData.name}
+                  onError={handleImageError}
                 />
               </div>
               <FavoriteBtn
