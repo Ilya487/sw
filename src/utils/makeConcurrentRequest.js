@@ -1,13 +1,25 @@
+import { cache } from "./cache";
+
 export const makeConcurrentRequest = async (urls) => {
-  const requests = urls.map((url) => fetch(url));
+  const result = [];
+
+  const requests = [];
+  urls.forEach((url) => {
+    if (!cache[url]) requests.push(fetch(url));
+    else result.push(cache[url]);
+  });
 
   const responses = await Promise.allSettled(requests);
 
-  const jsons = responses.map((response) =>
-    response.value ? response.value.json() : response
-  );
+  for await (let response of responses) {
+    if (response.value) {
+      const url = response.value.url;
+      cache[url] = await response.value.json();
+      result.push(cache[url]);
+    } else {
+      result.push(response);
+    }
+  }
 
-  const data = await Promise.all(jsons);
-
-  return data;
+  return result;
 };

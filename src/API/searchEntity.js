@@ -22,7 +22,7 @@ export function searchEntity() {
     }
 
     const response = await fetch(url, { signal });
-    const json = response.json();
+    const json = await response.json();
 
     cache.search[url] = json;
 

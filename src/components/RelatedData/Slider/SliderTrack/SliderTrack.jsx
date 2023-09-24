@@ -29,9 +29,6 @@ const SliderTrack = ({
         style={{ transform: `translateX(${offset}px)` }}
       >
         <SliderList slides={slides} itemWidth={itemWidth} slideRef={slideRef} />
-        {/* {slides.map((slide, i) => (
-          <SliderItem slide={slide} key={i} width={itemWidth} ref={slideRef} />
-        ))} */}
       </div>
     </div>
   );

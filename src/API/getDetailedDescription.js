@@ -6,7 +6,7 @@ export async function getDetailedDescription(id, entity) {
   if (url in cache) return cache[url];
 
   const response = await fetch(url);
-  const json = response.json();
+  const json = await response.json();
 
   cache[url] = json;
 
