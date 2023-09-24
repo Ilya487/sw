@@ -1,11 +1,10 @@
 import React, { useRef, useState } from "react";
 import styles from "./Slider.module.scss";
-import SliderItem from "./SliderItem/SliderItem";
 import SliderControl from "./SliderControl/SliderControl";
 import { useRecalculationSlideWidth } from "./hook/useRecalculationSlideWidth";
 import { useStabilizeAfterResize } from "./hook/useStabilizeAfterResize";
 import { useSliderDragAndDrop } from "./hook/useSliderDragAndDrop";
-import clsx from "clsx";
+import SliderTrack from "./SliderTrack/SliderTrack";
 
 const Slider = ({ slides, slidesToShow, slidesToScroll }) => {
   const [offset, setOffset] = useState(0);
@@ -56,29 +55,16 @@ const Slider = ({ slides, slidesToShow, slidesToScroll }) => {
 
   return (
     <div className={styles.slider}>
-      <div
-        className={styles.window}
-        ref={windowRef}
-        onMouseDown={dragSlider}
-        onTouchStart={touchDragSlider}
-      >
-        <div
-          className={clsx(
-            styles["slider-track"],
-            isDraging && styles["slider-track--draging"]
-          )}
-          style={{ transform: `translateX(${offset}px)` }}
-        >
-          {slides.map((slide, i) => (
-            <SliderItem
-              slide={slide}
-              key={i}
-              width={itemWidth}
-              ref={slideRef}
-            />
-          ))}
-        </div>
-      </div>
+      <SliderTrack
+        slides={slides}
+        dragSlider={dragSlider}
+        isDraging={isDraging}
+        touchDragSlider={touchDragSlider}
+        windowRef={windowRef}
+        itemWidth={itemWidth}
+        slideRef={slideRef}
+        offset={offset}
+      />
 
       <SliderControl
         setPrevSlide={setPrevSlide}
