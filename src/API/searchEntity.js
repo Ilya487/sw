@@ -1,3 +1,5 @@
+import { cache } from "../utils/cache";
+
 export function searchEntity() {
   let controller;
   let signal;
@@ -9,10 +11,21 @@ export function searchEntity() {
     signal = controller.signal;
 
     if (!query) return;
-    const response = await fetch(
-      `https://swapi.dev/api/${entity}/?search=${query}&page=${page}`,
-      { signal }
-    );
-    return await response.json();
+
+    const url = `https://swapi.dev/api/${entity}/?search=${query}&page=${page}`;
+
+    if (cache.search.query == query) {
+      if (cache.search[url]) return cache.search[url];
+    } else {
+      cache.search = {};
+      cache.search.query = query;
+    }
+
+    const response = await fetch(url, { signal });
+    const json = response.json();
+
+    cache.search[url] = json;
+
+    return cache.search[url];
   };
 }
