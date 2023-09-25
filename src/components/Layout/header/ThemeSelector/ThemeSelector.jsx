@@ -2,13 +2,18 @@ import React from "react";
 import { useTheme } from "../../../../hooks/useTheme";
 
 const ThemeSelector = () => {
-  const { changeTheme } = useTheme();
+  const { theme, changeTheme } = useTheme();
+
+  const handleTheme = () => {
+    theme == "light" ? changeTheme("dark") : changeTheme("light");
+  };
 
   return (
-    <select onChange={(e) => changeTheme(e.target.value)} defaultValue="light">
-      <option value="light">Light side</option>
-      <option value="dark">Dark side</option>
-    </select>
+    <div>
+      <button onClick={handleTheme}>
+        {theme == "light" ? "Ligth side" : "Dark side"}
+      </button>
+    </div>
   );
 };
 
