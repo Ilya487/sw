@@ -56,6 +56,7 @@ const Slider = ({ slides, slidesToShow, slidesToScroll }) => {
   return (
     <div className={styles.slider}>
       <SliderTrack
+        slidesToShow={slidesToShow}
         slides={slides}
         dragSlider={dragSlider}
         isDraging={isDraging}

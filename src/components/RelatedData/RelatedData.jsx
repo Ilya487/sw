@@ -27,8 +27,7 @@ const RelatedData = ({ urls, slidesToShow, slidesToScroll }) => {
     <Spinner />
   ) : (
     <Slider
-      slides={[...data, ...data, ...data]}
-      // slides={data}
+      slides={data}
       slidesToShow={slidesToShow}
       slidesToScroll={slidesToScroll}
     />

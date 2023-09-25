@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../Slider.module.scss";
 import clsx from "clsx";
-import SliderItem from "../SliderItem/SliderItem";
 import SliderList from "../SliderList/SliderList";
 
 const SliderTrack = ({
@@ -13,10 +12,14 @@ const SliderTrack = ({
   itemWidth,
   slideRef,
   offset,
+  slidesToShow,
 }) => {
   return (
     <div
-      className={styles.window}
+      className={clsx(
+        styles.window,
+        slides.length < slidesToShow ? styles["window--center"] : ""
+      )}
       ref={windowRef}
       onMouseDown={dragSlider}
       onTouchStart={touchDragSlider}
