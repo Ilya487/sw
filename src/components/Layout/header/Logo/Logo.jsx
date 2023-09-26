@@ -18,7 +18,7 @@ const Logo = () => {
     }
   }, [theme]);
 
-  return <img src={currentImg} alt="" style={{ maxWidth: "70px" }} />;
+  return <img src={currentImg} alt="" style={{ maxWidth: "65px" }} />;
 };
 
 export default Logo;

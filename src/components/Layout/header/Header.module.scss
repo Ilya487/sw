@@ -1,5 +1,10 @@
+$bgColor: cadetblue;
+
 .header {
-  background-color: cadetblue;
+  background-color: $bgColor;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 .inner {
   height: 85px;
@@ -8,4 +13,43 @@
   justify-content: center;
   gap: 30px;
   color: #fff;
+}
+.menu {
+  display: flex;
+
+  a {
+    margin: 0 15px;
+  }
+
+  @media (max-width: 980px) {
+    position: fixed;
+    flex-direction: column;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 270px;
+    padding: 85px 15px;
+    justify-content: center;
+    align-items: center;
+    background-color: $bgColor;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(100%);
+
+    a {
+      margin: 15px 0;
+    }
+  }
+  @media (max-height: 520px) {
+    justify-content: space-between;
+    a {
+      margin: 0;
+    }
+  }
+  @media (max-width: 430px) {
+    width: 200px;
+  }
+
+  &--show {
+    transform: translateX(0);
+  }
 }

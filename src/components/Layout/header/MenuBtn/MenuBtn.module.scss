@@ -1,0 +1,48 @@
+.menu-btn {
+  display: none;
+  width: 40px;
+  height: 25px;
+  background-color: transparent;
+  position: relative;
+
+  span {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    left: 0;
+    transition: all 0.3s ease-in;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: 50%;
+    }
+    &:nth-child(4) {
+      top: 100%;
+    }
+  }
+
+  &--active {
+    span {
+      &:nth-child(1),
+      &:nth-child(4) {
+        transform: scale(0);
+      }
+      &:nth-child(2) {
+        transform: rotate(45deg);
+      }
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  @media (max-width: 980px) {
+    display: block;
+    margin-left: auto;
+    z-index: 2;
+  }
+}
