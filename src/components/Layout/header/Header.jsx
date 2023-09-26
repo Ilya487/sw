@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
 import ThemeSelector from "./ThemeSelector/ThemeSelector";
 import Logo from "./Logo/Logo";
@@ -20,6 +20,12 @@ const Header = () => {
   const handleMenuShow = () => {
     setIsMenuShow(!isMenuShow);
   };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsMenuShow(false);
+  }, [location]);
 
   return (
     <>
