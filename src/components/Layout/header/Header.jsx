@@ -16,41 +16,47 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <Logo />
+      <div className="container">
+        <div className={styles.inner}>
+          <NavLink to="/people">
+            <Logo />
+          </NavLink>
 
-      <ThemeSelector />
+          <ThemeSelector />
 
-      <NavLink to="search" style={setActive}>
-        Search
-      </NavLink>
+          <NavLink to="search" style={setActive}>
+            Search
+          </NavLink>
 
-      <NavLink to="people?page=1" style={setActive}>
-        People
-      </NavLink>
+          <NavLink to="people?page=1" style={setActive}>
+            People
+          </NavLink>
 
-      <NavLink to="films?page=1" style={setActive}>
-        Films
-      </NavLink>
+          <NavLink to="films?page=1" style={setActive}>
+            Films
+          </NavLink>
 
-      <NavLink to="planets?page=1" style={setActive}>
-        Planets
-      </NavLink>
+          <NavLink to="planets?page=1" style={setActive}>
+            Planets
+          </NavLink>
 
-      <NavLink to="species?page=1" style={setActive}>
-        Species
-      </NavLink>
+          <NavLink to="species?page=1" style={setActive}>
+            Species
+          </NavLink>
 
-      <NavLink to="starships?page=1" style={setActive}>
-        Starships
-      </NavLink>
+          <NavLink to="starships?page=1" style={setActive}>
+            Starships
+          </NavLink>
 
-      <NavLink to="vehicles?page=1" style={setActive}>
-        Vehicles
-      </NavLink>
+          <NavLink to="vehicles?page=1" style={setActive}>
+            Vehicles
+          </NavLink>
 
-      <NavLink to="favorite" style={setActive}>
-        Favorite {favorites.length}
-      </NavLink>
+          <NavLink to="favorite" style={setActive}>
+            Favorite {favorites.length}
+          </NavLink>
+        </div>
+      </div>
     </header>
   );
 };

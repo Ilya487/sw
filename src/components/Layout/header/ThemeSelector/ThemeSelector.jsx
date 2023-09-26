@@ -1,5 +1,6 @@
 import React from "react";
 import { useTheme } from "../../../../hooks/useTheme";
+import styles from "./ThemeSelector.module.scss";
 
 const ThemeSelector = () => {
   const { theme, changeTheme } = useTheme();
@@ -9,11 +10,9 @@ const ThemeSelector = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleTheme}>
-        {theme == "light" ? "Ligth side" : "Dark side"}
-      </button>
-    </div>
+    <button onClick={handleTheme} className={styles.selector}>
+      {theme == "light" ? "Ligth side" : "Dark side"}
+    </button>
   );
 };
 
