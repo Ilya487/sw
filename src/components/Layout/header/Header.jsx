@@ -4,6 +4,7 @@ import styles from "./Header.module.scss";
 import { useFavorite } from "../../../hooks/useFavorite";
 import ThemeSelector from "./ThemeSelector/ThemeSelector";
 import Logo from "./Logo/Logo";
+import FavoriteLabel from "./FavoriteLabel/FavoriteLabel";
 
 const Header = () => {
   const { favorites } = useFavorite();
@@ -53,7 +54,7 @@ const Header = () => {
           </NavLink>
 
           <NavLink to="favorite" style={setActive}>
-            Favorite {favorites.length}
+            <FavoriteLabel />
           </NavLink>
         </div>
       </div>

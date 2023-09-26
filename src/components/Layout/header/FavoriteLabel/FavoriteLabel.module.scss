@@ -1,0 +1,10 @@
+.text {
+  position: relative;
+
+  span {
+    position: absolute;
+    top: 0;
+    left: 110%;
+    display: block;
+  }
+}
