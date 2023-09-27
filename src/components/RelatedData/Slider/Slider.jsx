@@ -34,7 +34,11 @@ const Slider = ({ slides, slidesToShow, slidesToScroll }) => {
     const newOffset = offset - stepWidth * slidesToScroll;
     const limit = -(stepWidth * (slides.length - slidesToShow));
 
-    if (newOffset < limit && offset <= limit) return;
+    if (newOffset < limit) {
+      setShowedSlides(slides.length - slidesToShow);
+      setOffset(limit);
+      return;
+    }
 
     setShowedSlides((actual) => actual + slidesToScroll);
     setOffset(newOffset);
