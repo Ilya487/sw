@@ -14,11 +14,13 @@ const EntityListItem = ({ item }) => {
     <li className={styles.item}>
       <Link to={`/${entity}/${getEntityNumber(item.url)}`}>
         <FavoriteBtn item={item} className={styles["favorite-btn"]} />
-        <img
-          src={getEntityImg(item.url, entity)}
-          alt=""
-          onError={handleImageError}
-        />
+        <div className={styles["img-wrapper"]}>
+          <img
+            src={getEntityImg(item.url, entity)}
+            alt=""
+            onError={handleImageError}
+          />
+        </div>
         <p>{entity == "films" ? item.title : item.name}</p>
       </Link>
     </li>
