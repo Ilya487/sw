@@ -19,7 +19,7 @@ const EntityListItem = ({ item }) => {
           alt=""
           onError={handleImageError}
         />
-        <p>{item.name}</p>
+        <p>{entity == "films" ? item.title : item.name}</p>
       </Link>
     </li>
   );

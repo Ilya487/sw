@@ -9,7 +9,7 @@ import styles from "./EntityPage.module.scss";
 const EntityPage = ({ entity }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [pageInfo, setPageInfo] = useState({});
-  const [searchParams, setSearchParams] = useSearchParams({ page: 1 });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   async function getEntity() {
     setIsLoading(true);
