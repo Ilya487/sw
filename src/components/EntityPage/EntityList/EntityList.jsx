@@ -6,9 +6,7 @@ const EntityList = ({ entityList }) => {
   return (
     <ul className={styles["people-list"]}>
       {entityList.map((item, indx) => (
-        <li key={indx}>
-          <EntityListItem item={item} />
-        </li>
+        <EntityListItem item={item} key={indx} />
       ))}
     </ul>
   );

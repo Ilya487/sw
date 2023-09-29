@@ -4,6 +4,7 @@ import EntityListControl from "./EntityList/Control/EntityListControl";
 import { setEntityPage } from "../../API/setEntityPage";
 import { useSearchParams } from "react-router-dom";
 import Sceleton from "./Sceleton/Sceleton";
+import styles from "./EntityPage.module.scss";
 
 const EntityPage = ({ entity }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,12 +30,14 @@ const EntityPage = ({ entity }) => {
   return isLoading ? (
     [...new Array(9)].map((_, i) => <Sceleton />)
   ) : (
-    <div>
-      <EntityList entityList={pageInfo.results} />
-      <EntityListControl
-        prevNext={{ prev: pageInfo.previous, next: pageInfo.next }}
-        switchPage={setSearchParams}
-      />
+    <div className={styles["entity-list"]}>
+      <div className="container">
+        <EntityList entityList={pageInfo.results} />
+        <EntityListControl
+          prevNext={{ prev: pageInfo.previous, next: pageInfo.next }}
+          switchPage={setSearchParams}
+        />
+      </div>
     </div>
   );
 };
