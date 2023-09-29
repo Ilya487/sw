@@ -5,8 +5,8 @@ import EntityListItem from "./EntityListItem/EntityListItem";
 const EntityList = ({ entityList }) => {
   return (
     <ul className={styles["people-list"]}>
-      {entityList.map((item, indx) => (
-        <EntityListItem item={item} key={indx} />
+      {entityList.map((item) => (
+        <EntityListItem item={item} key={item.url} />
       ))}
     </ul>
   );
