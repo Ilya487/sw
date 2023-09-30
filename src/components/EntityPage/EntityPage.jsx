@@ -3,8 +3,8 @@ import EntityList from "./EntityList/EntityList";
 import EntityListControl from "./EntityList/Control/EntityListControl";
 import { setEntityPage } from "../../API/setEntityPage";
 import { useSearchParams } from "react-router-dom";
-import Sceleton from "./Sceleton/Sceleton";
 import styles from "./EntityPage.module.scss";
+import Preloader from "./Preloader/Preloader";
 
 const EntityPage = ({ entity }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +28,7 @@ const EntityPage = ({ entity }) => {
   }, [searchParams.get("page")]);
 
   return isLoading ? (
-    [...new Array(9)].map((_, i) => <Sceleton />)
+    <Preloader />
   ) : (
     <div className={styles["entity-list"]}>
       <div className="container">
