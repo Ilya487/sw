@@ -2,29 +2,59 @@ import React from "react";
 import styles from "./Pagination.module.scss";
 
 const Pagination = ({
-  count,
-  countItemsOnPage,
+  totalCount,
+  totalItemsOnPage,
   currentPage,
   searchParamsControl,
+  maxButtonsOnPage,
 }) => {
-  const contOfPages = Math.ceil(count / countItemsOnPage);
+  const countOfPages = Math.ceil(totalCount / totalItemsOnPage);
 
-  return contOfPages < 2 ? null : (
-    <ul className={styles.list}>
-      {Array(contOfPages)
-        .fill(0)
-        .map((_, i) => (
-          <li className={styles["list-item"]}>
-            <button
-              style={{ backgroundColor: i + 1 == currentPage ? "red" : "" }}
-              onClick={() => searchParamsControl({ page: i + 1 })}
-            >
-              {" "}
-              {i + 1}
-            </button>
-          </li>
-        ))}
-    </ul>
+  const calcStartEnd = () => {
+    const result = { start: undefined, end: undefined };
+
+    if (countOfPages < maxButtonsOnPage) {
+      result.start = 1;
+      result.end = countOfPages;
+      return result;
+    }
+
+    const distanceToMid = Math.floor(maxButtonsOnPage / 2);
+
+    if (currentPage + distanceToMid > countOfPages) {
+      result.start = countOfPages - maxButtonsOnPage + 1;
+      result.end = countOfPages;
+      return result;
+    } else if (currentPage - distanceToMid < 1) {
+      result.start = 1;
+      result.end = maxButtonsOnPage;
+      return result;
+    } else {
+      result.start = currentPage - distanceToMid;
+      result.end = result.start + maxButtonsOnPage - 1;
+      return result;
+    }
+  };
+
+  const { start, end } = calcStartEnd();
+
+  const buttonsJSX = [];
+
+  for (let i = start; i <= end; i++) {
+    buttonsJSX.push(
+      <li className={styles["list-item"]} key={i}>
+        <button
+          style={{ backgroundColor: i == currentPage ? "red" : "" }}
+          onClick={() => searchParamsControl({ page: i })}
+        >
+          {i}
+        </button>
+      </li>
+    );
+  }
+
+  return countOfPages < 2 ? null : (
+    <ul className={styles.list}>{buttonsJSX}</ul>
   );
 };
 

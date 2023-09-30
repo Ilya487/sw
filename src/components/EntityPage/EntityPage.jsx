@@ -40,9 +40,10 @@ const EntityPage = ({ entity }) => {
         />
         <Pagination
           searchParamsControl={setSearchParams}
-          count={pageInfo.count}
-          countItemsOnPage={10}
+          totalCount={pageInfo.count}
+          totalItemsOnPage={10}
           currentPage={+searchParams.get("page")}
+          maxButtonsOnPage={10}
         />
       </div>
     </div>
