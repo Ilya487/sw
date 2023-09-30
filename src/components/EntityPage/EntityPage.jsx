@@ -5,6 +5,7 @@ import { setEntityPage } from "../../API/setEntityPage";
 import { useSearchParams } from "react-router-dom";
 import styles from "./EntityPage.module.scss";
 import Preloader from "./Preloader/Preloader";
+import Pagination from "./Pagination/Pagination";
 
 const EntityPage = ({ entity }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,12 @@ const EntityPage = ({ entity }) => {
         <EntityListControl
           prevNext={{ prev: pageInfo.previous, next: pageInfo.next }}
           switchPage={setSearchParams}
+        />
+        <Pagination
+          searchParamsControl={setSearchParams}
+          count={pageInfo.count}
+          countItemsOnPage={10}
+          currentPage={+searchParams.get("page")}
         />
       </div>
     </div>
