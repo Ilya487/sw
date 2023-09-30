@@ -13,7 +13,7 @@ export const useMatchMedia = (mediaQueries, initialCallback) => {
         } else if (index == 0) {
           initialCallback();
         } else {
-          mediaQueries[index - 1].callback();
+          mediaList[index - 1].onchange();
         }
       }
       change();
