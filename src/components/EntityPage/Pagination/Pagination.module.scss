@@ -1,11 +1,20 @@
 .list {
   display: flex;
   justify-content: center;
-  gap: 15px;
 }
 .list-item {
-  button {
-    padding: 10px;
-    font-size: 16px;
+  & + & {
+    margin-left: 15px;
   }
+}
+.button {
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  font-size: 17px;
+}
+$color: var(--theme-current-page);
+.button-active {
+  color: $color;
+  box-shadow: 0 0 15px $color;
 }

@@ -28,6 +28,10 @@ const EntityPage = ({ entity }) => {
     getEntity();
   }, [searchParams.get("page")]);
 
+  const setCurrentPage = (num) => {
+    setSearchParams({ page: num });
+  };
+
   return isLoading ? (
     <Preloader />
   ) : (
@@ -39,11 +43,11 @@ const EntityPage = ({ entity }) => {
           switchPage={setSearchParams}
         />
         <Pagination
-          searchParamsControl={setSearchParams}
           totalCount={pageInfo.count}
           totalItemsOnPage={10}
           currentPage={+searchParams.get("page")}
           maxButtonsOnPage={10}
+          setCurrentPage={setCurrentPage}
         />
       </div>
     </div>

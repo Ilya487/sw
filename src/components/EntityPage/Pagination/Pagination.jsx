@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "./Pagination.module.scss";
+import clsx from "clsx";
 
 const Pagination = ({
   totalCount,
   totalItemsOnPage,
   currentPage,
-  searchParamsControl,
   maxButtonsOnPage,
+  setCurrentPage,
 }) => {
   const countOfPages = Math.ceil(totalCount / totalItemsOnPage);
 
@@ -44,8 +45,11 @@ const Pagination = ({
     buttonsJSX.push(
       <li className={styles["list-item"]} key={i}>
         <button
-          style={{ backgroundColor: i == currentPage ? "red" : "" }}
-          onClick={() => searchParamsControl({ page: i })}
+          className={clsx(
+            styles.button,
+            i == currentPage && styles["button-active"]
+          )}
+          onClick={() => setCurrentPage(i)}
         >
           {i}
         </button>

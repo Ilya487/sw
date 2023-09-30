@@ -21,9 +21,9 @@
   );
   --theme-current-bg: var(--theme-light-bg);
 
-  --theme-light-color: #dfe2df;
-  --theme-dark-color: #ca6c6f;
-  --theme-current-color: var(--theme-light-color);
+  --theme-light-page: rgb(7, 180, 7);
+  --theme-dark-page: rgb(230, 13, 13);
+  --theme-current-page: var(--theme-light-page);
 }
 body {
   background-image: var(--theme-current-bg);
@@ -31,7 +31,7 @@ body {
   background-repeat: no-repeat;
   background-position: top left;
   background-attachment: fixed;
-  color: var(--theme-current-color);
+  color: #dfe2df;
 }
 .container {
   max-width: 1310px;
