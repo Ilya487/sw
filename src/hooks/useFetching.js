@@ -1,15 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useFetching = (callback) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const navigation = useNavigate();
 
-  const fetchFunction = async () => {
+  const fetchData = async () => {
     setIsLoading(true);
     setIsError(false);
     try {
-      callback();
+      await callback();
     } catch (e) {
       setIsError(true);
       if (e.message == "404")
@@ -21,5 +22,5 @@ export const useFetching = (callback) => {
     }
   };
 
-  return { fetchFunction, isError, isLoading };
+  return { fetchData, isError, isLoading };
 };
