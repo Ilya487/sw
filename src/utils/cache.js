@@ -1,5 +1,5 @@
 const CACHE_NAME = "queries cache";
-const STORAGE_NAME = "storage";
+const STORAGE_NAME = "/storage";
 
 export const cache = {
   _isInitialize: false,
