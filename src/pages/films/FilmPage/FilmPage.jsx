@@ -8,10 +8,11 @@ import FavoriteBtn from "../../../components/UI/FavoriteBtn/FavoriteBtn";
 import FilmPageSceleton from "./FilmPageSceleton/FilmPageSceleton";
 import AdditionalInformation from "../../../components/AdditionalInformation/AdditionalInformation";
 import { useSliderMatchMedia } from "../../../hooks/useSliderMatchMedia";
+import { useFetching } from "../../../hooks/useFetching";
+import ErrorPage from "../../ErrorPage/ErrorPage";
 
 const FilmPage = () => {
   const [filmData, setFilmData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
   const sliderOption = useSliderMatchMedia(
     [
@@ -43,22 +44,19 @@ const FilmPage = () => {
   const { id } = useParams();
 
   async function getInfo() {
-    setIsLoading(true);
-    try {
-      const data = await getDetailedDescription(id, "films");
-      setFilmData(data);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setIsLoading(false);
-    }
+    const data = await getDetailedDescription(id, "films");
+    setFilmData(data);
   }
 
+  const { fetchData, isError, isLoading } = useFetching(getInfo);
+
   useEffect(() => {
-    getInfo();
+    fetchData();
   }, []);
 
-  return isLoading ? (
+  return isError ? (
+    <ErrorPage />
+  ) : isLoading ? (
     <FilmPageSceleton slidesToShow={sliderOption.slidesToShow} />
   ) : (
     <div className={styles["film-page"]}>
