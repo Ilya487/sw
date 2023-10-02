@@ -9,10 +9,11 @@ import { getEntityImg } from "../../utils/getEntityImg";
 import FavoriteBtn from "../UI/FavoriteBtn/FavoriteBtn";
 import EntityDetailPageSkeleton from "./EntityDetailPageSkeleton/EntityDetailPageSkeleton";
 import { handleImageError } from "../../utils/handleImageError";
+import ErrorPage from "../../pages/ErrorPage/ErrorPage";
+import { useFetching } from "../../hooks/useFetching";
 
 const EntityDetailPage = ({ entity }) => {
   const [entityData, setEntityData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
   const sliderOption = useSliderMatchMedia(
     [
@@ -44,22 +45,19 @@ const EntityDetailPage = ({ entity }) => {
   const { id } = useParams();
 
   async function getInfo() {
-    setIsLoading(true);
-    try {
-      const data = await getDetailedDescription(id, entity);
-      setEntityData(data);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setIsLoading(false);
-    }
+    const data = await getDetailedDescription(id, entity);
+    setEntityData(data);
   }
 
+  const { fetchData, isError, isLoading } = useFetching(getInfo);
+
   useEffect(() => {
-    getInfo();
+    fetchData();
   }, []);
 
-  return isLoading ? (
+  return isError ? (
+    <ErrorPage />
+  ) : isLoading ? (
     <EntityDetailPageSkeleton
       entity={entity}
       slidesToShow={sliderOption.slidesToShow}
