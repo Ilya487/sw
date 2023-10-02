@@ -14,6 +14,7 @@ import FavoriteProvider from "./providers/FavoriteProvider";
 import FavoritePage from "./pages/FavoritePage";
 import ThemeProvider from "./providers/ThemeProvider";
 import EntityDetailPage from "./components/EntityDetailePage/EntityDetailedPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -56,8 +57,8 @@ function App() {
 
               <Route path="favorite" element={<FavoritePage />} />
 
-              <Route path="/" element={<Navigate to="people" />} />
-              <Route path="*" element={<p>нет такой страницы</p>} />
+              <Route path="/" element={<Navigate to="people?page=1" />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </FavoriteProvider>
