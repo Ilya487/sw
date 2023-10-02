@@ -7,6 +7,8 @@ export async function setEntityPage(page, entity) {
   if (url in cache.storage) return cache.storage[url];
 
   const response = await fetch(url);
+  if (response.status >= 400) throw new Error(response.status);
+
   const json = await response.json();
 
   cache.storage[url] = json;
