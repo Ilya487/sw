@@ -8,10 +8,11 @@ import PersonInfoPreloader from "./PersonInfoPreloader/PersonInfoPreloader";
 import AdditionalInformation from "../../../components/AdditionalInformation/AdditionalInformation";
 import { useSliderMatchMedia } from "../../../hooks/useSliderMatchMedia";
 import FavoriteBtn from "../../../components/UI/FavoriteBtn/FavoriteBtn";
+import { useFetching } from "../../../hooks/useFetching";
+import ErrorPage from "../../ErrorPage/ErrorPage";
 
 const PersonPage = () => {
   const [personData, setPersonData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
   const sliderOption = useSliderMatchMedia(
     [
@@ -36,24 +37,21 @@ const PersonPage = () => {
   const { id } = useParams();
 
   async function getInfo() {
-    setIsLoading(true);
-    try {
-      const data = await getDetailedDescription(id, "people");
-      setPersonData(data);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setIsLoading(false);
-    }
+    const data = await getDetailedDescription(id, "people");
+    setPersonData(data);
   }
 
+  const { fetchData, isError, isLoading } = useFetching(getInfo);
+
   useEffect(() => {
-    getInfo();
+    fetchData();
   }, []);
 
   return (
     <>
-      {isLoading ? (
+      {isError ? (
+        <ErrorPage />
+      ) : isLoading ? (
         <PersonInfoPreloader slidesToShow={sliderOption.slidesToShow} />
       ) : (
         <div className={styles["person-page"]}>
