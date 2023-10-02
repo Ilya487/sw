@@ -24,7 +24,10 @@ const EntityPage = ({ entity }) => {
       setPageInfo(data);
     } catch (e) {
       setIsError(true);
-      if (e.message == "404") navigation("/notFound");
+      if (e.message == "404")
+        navigation("/notFound", {
+          replace: true,
+        });
     } finally {
       setIsLoading(false);
     }
