@@ -29,8 +29,8 @@ const SearchPage = () => {
 
       <Filter searchParams={searchParams} setSearchParams={setSearchParams} />
 
-      {filters.map((f, indx) => (
-        <Search entity={f} key={indx} />
+      {filters.map((f) => (
+        <Search entity={f} key={f} />
       ))}
     </div>
   );

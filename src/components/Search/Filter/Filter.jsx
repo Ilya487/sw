@@ -28,17 +28,15 @@ const Filter = ({ searchParams, setSearchParams }) => {
     <div>
       <span>Выбор категорий для поиска: </span>
       {entities.map((entity) => (
-        <React.Fragment key={entity}>
-          <label style={{ marginRight: "10px" }}>
-            <input
-              type="checkbox"
-              value={entity}
-              onChange={updateFilters}
-              checked={selectedFilters.indexOf(entity) == -1 ? false : true}
-            />
-            {entity}
-          </label>
-        </React.Fragment>
+        <label style={{ marginRight: "10px" }} key={entity}>
+          <input
+            type="checkbox"
+            value={entity}
+            onChange={updateFilters}
+            checked={selectedFilters.indexOf(entity) == -1 ? false : true}
+          />
+          {entity}
+        </label>
       ))}
     </div>
   );
