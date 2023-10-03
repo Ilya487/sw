@@ -3,7 +3,7 @@ import PeoplePage from "./pages/people/PeoplePage";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import PersonPage from "./pages/people/PersonPage/PersonPage";
 import Layout from "./components/Layout/Layout";
-import SearchPage from "./pages/SearchPage";
+import SearchPage from "./pages/search/SearchPage";
 import FilmsPage from "./pages/films/FilmsPage";
 import FilmPage from "./pages/films/FilmPage/FilmPage";
 import PlanetsPage from "./pages/PlanetsPage";
