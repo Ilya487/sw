@@ -1,5 +1,6 @@
 import React from "react";
 import { entities } from "../../../utils/constants/entities";
+import styles from "./Filter.module.scss";
 
 const Filter = ({ searchParams, setSearchParams }) => {
   function insertNewFilter(value) {
@@ -25,17 +26,19 @@ const Filter = ({ searchParams, setSearchParams }) => {
   const selectedFilters = searchParams.getAll("filters");
 
   return (
-    <div>
-      <span>Выбор категорий для поиска: </span>
+    <div className={styles.filters}>
+      <p className={styles.subtitle}>Select categories for search: </p>
       {entities.map((entity) => (
-        <label style={{ marginRight: "10px" }} key={entity}>
+        <label className={styles["checkbox-label"]} key={entity}>
           <input
+            className={styles.input}
             type="checkbox"
             value={entity}
             onChange={updateFilters}
             checked={selectedFilters.indexOf(entity) == -1 ? false : true}
           />
-          {entity}
+          <span className={styles["custom-checkbox"]}></span>
+          <span>{entity}</span>
         </label>
       ))}
     </div>

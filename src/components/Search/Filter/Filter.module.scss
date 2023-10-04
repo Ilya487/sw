@@ -1,0 +1,49 @@
+.filters {
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  max-width: max-content;
+
+  box-shadow: 0px 0px 5px 3px #000;
+  padding: 15px;
+  border-radius: 5px;
+
+  @media (max-width: 550px) {
+    margin: 0 auto 15px;
+  }
+}
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  grid-column: span 2;
+}
+.checkbox-label {
+  margin-right: 15px;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 15px;
+
+  span::first-letter {
+    text-transform: uppercase;
+  }
+}
+.input {
+  margin-right: 5px;
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+
+  &:focus + .custom-checkbox {
+    box-shadow: 0px 0px 0px 2px #444;
+  }
+  &:checked + .custom-checkbox {
+    background-image: url("../../../assets/checked-box.svg");
+  }
+}
+.custom-checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--border-radius);
+  background-image: url("../../../assets/check-box.svg");
+  margin-right: 5px;
+}
