@@ -37,12 +37,20 @@ export const useSearch = (query, entity, currentPage, setCurrentPage) => {
     debouncedSearch.current(query, entity, currentPage);
   }, [query]);
 
+  const lastQuery = useRef(query);
+
   useEffect(() => {
-    debouncedSearch.current(query, entity, currentPage);
+    if (currentPage == 1 && lastQuery.current !== query) {
+      lastQuery.current = query;
+      debouncedSearch.current(query, entity, currentPage);
+    } else {
+      lastQuery.current = query;
+      search(query, entity, currentPage);
+    }
   }, [currentPage]);
 
   const refresh = () => {
-    debouncedSearch.current(query, entity, currentPage);
+    search(query, entity, currentPage);
   };
 
   return { searchData, isLoading, isError, refresh };
