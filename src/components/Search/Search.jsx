@@ -1,69 +1,54 @@
-import React, { useEffect, useRef, useState } from "react";
-import { searchEntity } from "../../API/searchEntity";
-import { debounce } from "../../utils/debounce";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import FoundElements from "./FoundElements/FoundElements";
 import styles from "./Search.module.scss";
 import SearchListControl from "./FoundElements/SearchListControl/SearchListControl";
+import { useSearch } from "./hooks/useSearch";
 
 const Search = ({ entity }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchData, setSearchData] = useState();
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const query = searchParams.get("search");
 
-  const returnedSearch = useRef(searchEntity());
+  const { searchData, isLoading, isError, refresh } = useSearch(
+    query,
+    entity,
+    currentPage,
+    setCurrentPage
+  );
 
-  async function search(query, entity, currentPage) {
-    if (!query) return;
+  return (
+    <div>
+      <h1>{entity}</h1>
+      {isLoading && <h1>Loading...</h1>}
 
-    let isRequestAbort = false;
-    setIsLoading(true);
-    try {
-      const data = await returnedSearch.current(query, entity, currentPage);
-      setSearchData(data);
-    } catch (error) {
-      if (error.name === "AbortError") isRequestAbort = true;
-    } finally {
-      if (isRequestAbort) return;
-      setIsLoading(false);
-    }
-  }
+      {!isError && !isLoading && searchData && searchData.count == 0 && (
+        <>
+          <p>Ничего не найдено(</p>
+        </>
+      )}
 
-  const debouncedSearch = useRef(debounce(search, 400));
+      {!isError && !isLoading && searchData && searchData.count > 0 && (
+        <>
+          <p>Найдено {searchData.count}</p>
+          <div className={styles.search}>
+            <FoundElements elements={searchData.results} entity={entity} />
+            <SearchListControl
+              prevNext={{ prev: searchData.previous, next: searchData.next }}
+              setCurrentPage={setCurrentPage}
+            />
+          </div>
+        </>
+      )}
 
-  useEffect(() => {
-    setCurrentPage(1);
-    debouncedSearch.current(query, entity, currentPage);
-  }, [query]);
-
-  useEffect(() => {
-    debouncedSearch.current(query, entity, currentPage);
-  }, [currentPage]);
-
-  return isLoading ? (
-    <h1>Loading...</h1>
-  ) : searchData ? (
-    searchData.results.length > 0 ? (
-      <>
-        <h1>{entity}</h1>
-        <p>Найдено {searchData.count}</p>
-        <div className={styles.search}>
-          <FoundElements elements={searchData.results} entity={entity} />
-          <SearchListControl
-            prevNext={{ prev: searchData.previous, next: searchData.next }}
-            setCurrentPage={setCurrentPage}
-          />
-        </div>
-      </>
-    ) : (
-      <>
-        <h1>{entity}</h1>
-        <p>Ничего не найдено(</p>
-      </>
-    )
-  ) : null;
+      {isError && (
+        <>
+          <p>ERROR!</p>
+          <button onClick={refresh}>Reload</button>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Search;
