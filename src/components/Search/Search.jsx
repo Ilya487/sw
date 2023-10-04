@@ -17,7 +17,7 @@ const Search = ({ entity }) => {
   );
 
   return (
-    <div>
+    <div className={styles.block}>
       <h2 className={styles.title}>{entity}</h2>
       {isLoading && <h1>Loading...</h1>}
 
