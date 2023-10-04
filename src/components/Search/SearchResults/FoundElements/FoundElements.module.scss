@@ -1,4 +1,13 @@
 .search-list {
-  column-count: 3;
-  column-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  justify-content: center;
+  justify-items: center;
+  row-gap: 15px;
+  column-gap: 10px;
+  margin-bottom: 15px;
+
+  @media (max-width: 520px) {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
 }

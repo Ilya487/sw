@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { handleImageError } from "../../../../../utils/handleImageError";
 import styles from "./FoundItem.module.scss";
-import FavoriteBtn from "../../../../UI/FavoriteBtn/FavoriteBtn";
 import { getEntityNumber } from "../../../../../utils/getEntityNumber";
 import { getEntityImg } from "../../../../../utils/getEntityImg";
 
@@ -22,7 +21,6 @@ const FoundItem = ({ item, entity }) => {
         <p className={styles.name}>
           {entity == "films" ? item.title : item.name}
         </p>
-        <FavoriteBtn item={item} />
       </Link>
     </li>
   );
