@@ -1,3 +1,13 @@
 .search {
   position: relative;
 }
+.title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}

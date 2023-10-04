@@ -4,7 +4,7 @@ import { setEntityPage } from "../../API/setEntityPage";
 import { useSearchParams } from "react-router-dom";
 import styles from "./EntityPage.module.scss";
 import Preloader from "./Preloader/Preloader";
-import Pagination from "./Pagination/Pagination";
+import Pagination from "../../components/Pagination/Pagination";
 import { useMatchMedia } from "../../hooks/useMatchMedia";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import { useFetching } from "../../hooks/useFetching";

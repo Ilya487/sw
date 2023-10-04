@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import FoundElements from "./FoundElements/FoundElements";
 import styles from "./Search.module.scss";
-import SearchListControl from "./FoundElements/SearchListControl/SearchListControl";
 import { useSearch } from "./hooks/useSearch";
+import SearchResults from "./SearchResults/SearchResults";
 
 const Search = ({ entity }) => {
   const [searchParams] = useSearchParams();
@@ -19,26 +18,16 @@ const Search = ({ entity }) => {
 
   return (
     <div>
-      <h1>{entity}</h1>
+      <h2 className={styles.title}>{entity}</h2>
       {isLoading && <h1>Loading...</h1>}
 
-      {!isError && !isLoading && searchData && searchData.count == 0 && (
-        <>
-          <p>Ничего не найдено(</p>
-        </>
-      )}
-
-      {!isError && !isLoading && searchData && searchData.count > 0 && (
-        <>
-          <p>Найдено {searchData.count}</p>
-          <div className={styles.search}>
-            <FoundElements elements={searchData.results} entity={entity} />
-            <SearchListControl
-              prevNext={{ prev: searchData.previous, next: searchData.next }}
-              setCurrentPage={setCurrentPage}
-            />
-          </div>
-        </>
+      {!isError && !isLoading && searchData && (
+        <SearchResults
+          searchData={searchData}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          entity={entity}
+        />
       )}
 
       {isError && (

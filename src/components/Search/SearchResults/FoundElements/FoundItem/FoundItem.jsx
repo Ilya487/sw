@@ -1,10 +1,10 @@
 import React from "react";
-import { getEntityImg } from "../../../../utils/getEntityImg";
 import { Link } from "react-router-dom";
-import { handleImageError } from "../../../../utils/handleImageError";
+import { handleImageError } from "../../../../../utils/handleImageError";
 import styles from "./FoundItem.module.scss";
-import FavoriteBtn from "../../../UI/FavoriteBtn/FavoriteBtn";
-import { getEntityNumber } from "../../../../utils/getEntityNumber";
+import FavoriteBtn from "../../../../UI/FavoriteBtn/FavoriteBtn";
+import { getEntityNumber } from "../../../../../utils/getEntityNumber";
+import { getEntityImg } from "../../../../../utils/getEntityImg";
 
 const FoundItem = ({ item, entity }) => {
   return (
