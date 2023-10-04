@@ -14,3 +14,23 @@
     text-transform: uppercase;
   }
 }
+.preloader {
+  padding: 50px 0;
+}
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    color: red;
+    margin-bottom: 7px;
+  }
+  button {
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+}

@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import styles from "./Search.module.scss";
 import { useSearch } from "./hooks/useSearch";
 import SearchResults from "./SearchResults/SearchResults";
+import Spinner from "../Spinner/Spinner";
 
 const Search = ({ entity }) => {
   const [searchParams] = useSearchParams();
@@ -19,7 +20,12 @@ const Search = ({ entity }) => {
   return (
     <div className={styles.block}>
       <h2 className={styles.title}>{entity}</h2>
-      {isLoading && <h1>Loading...</h1>}
+
+      {isLoading && (
+        <div className={styles.preloader}>
+          <Spinner />
+        </div>
+      )}
 
       {!isError && !isLoading && searchData && (
         <SearchResults
@@ -31,10 +37,10 @@ const Search = ({ entity }) => {
       )}
 
       {isError && (
-        <>
-          <p>ERROR!</p>
-          <button onClick={refresh}>Reload</button>
-        </>
+        <div className={styles.error}>
+          <p>Failed to fetch data</p>
+          <button onClick={refresh}>Try again</button>
+        </div>
       )}
     </div>
   );
