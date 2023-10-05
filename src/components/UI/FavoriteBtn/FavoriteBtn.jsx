@@ -4,7 +4,7 @@ import styles from "./FavoriteBtn.module.scss";
 import clsx from "clsx";
 import { GrFavorite } from "react-icons/gr";
 
-const FavoriteBtn = ({ item, className, ...props }) => {
+const FavoriteBtn = ({ item, className }) => {
   const { toggleFavorite, checkFavorite } = useFavorite();
   const isChecked = checkFavorite(item.url);
 
