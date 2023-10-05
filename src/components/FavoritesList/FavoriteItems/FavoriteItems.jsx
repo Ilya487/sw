@@ -1,14 +1,23 @@
 import React from "react";
 import styles from "./FavoriteItems.module.scss";
 import EntityListItem from "../../EntityPage/EntityList/EntityListItem/EntityListItem";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const FavoriteItems = ({ items }) => {
   return (
-    <ul className={styles.list}>
+    <TransitionGroup component="ul" className={styles.list}>
       {items.map((item) => (
-        <EntityListItem item={item} key={item.url} />
+        <CSSTransition
+          key={item.url}
+          timeout={310}
+          classNames={{
+            exitActive: styles["item-active-exit"],
+          }}
+        >
+          <EntityListItem item={item} />
+        </CSSTransition>
       ))}
-    </ul>
+    </TransitionGroup>
   );
 };
 

@@ -4,3 +4,11 @@
   flex-wrap: wrap;
   margin-bottom: 30px;
 }
+.void {
+  margin: 0;
+}
+.item-active-exit {
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: all 0.3s;
+}
