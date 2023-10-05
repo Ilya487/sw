@@ -11,7 +11,7 @@ import SpeciesPage from "./pages/SpeciesPage";
 import StarshipsPage from "./pages/StarshipsPage";
 import VehiclesPage from "./pages/VehiclesPage";
 import FavoriteProvider from "./providers/FavoriteProvider";
-import FavoritePage from "./pages/FavoritePage";
+import FavoritePage from "./pages/favorite/FavoritePage";
 import ThemeProvider from "./providers/ThemeProvider";
 import EntityDetailPage from "./components/EntityDetailePage/EntityDetailedPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";

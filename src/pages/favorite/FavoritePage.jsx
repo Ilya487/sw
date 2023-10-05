@@ -1,7 +1,8 @@
 import React from "react";
-import { useFavorite } from "../hooks/useFavorite";
-import { defineEntity } from "../utils/defineEntity";
-import FavoritesList from "../components/FavoritesList/FavoritesList";
+import { useFavorite } from "../../hooks/useFavorite";
+import { defineEntity } from "../../utils/defineEntity";
+import FavoritesList from "../../components/FavoritesList/FavoritesList";
+import styles from "./FavoritePage.module.scss";
 
 const FavoritePage = () => {
   const { favorites } = useFavorite();
@@ -27,9 +28,13 @@ const FavoritePage = () => {
   const sortedFavorites = sortFavorites();
 
   return favorites.length > 0 ? (
-    <FavoritesList favorites={sortedFavorites} />
+    <div className={styles.favorite}>
+      <div className="container">
+        <FavoritesList favorites={sortedFavorites} />
+      </div>
+    </div>
   ) : (
-    <p>No data</p>
+    <h2 className={styles["no-data"]}>No data</h2>
   );
 };
 

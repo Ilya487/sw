@@ -1,5 +1,6 @@
 import React from "react";
 import EntityList from "../EntityPage/EntityList/EntityList";
+import styles from "./FavoritesList.module.scss";
 
 const FavoritesList = ({ favorites }) => {
   return (
@@ -8,7 +9,7 @@ const FavoritesList = ({ favorites }) => {
         if (favorites[key].length > 0) {
           return (
             <li key={key}>
-              <h1>{key}</h1>
+              <h2 className={styles.title}>{key}</h2>
               <EntityList entityList={favorites[key]} />
             </li>
           );
