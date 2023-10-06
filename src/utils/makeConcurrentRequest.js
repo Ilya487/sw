@@ -1,5 +1,7 @@
 import { cache } from "./cache";
 
+let controllers = [];
+
 export const makeConcurrentRequest = async (urls) => {
   await cache.initialize();
 
@@ -7,8 +9,13 @@ export const makeConcurrentRequest = async (urls) => {
 
   const requests = [];
   urls.forEach((url) => {
-    if (!cache.storage[url]) requests.push(fetch(url));
-    else result.push(cache.storage[url]);
+    if (!cache.storage[url]) {
+      const controller = new AbortController();
+      const signal = controller.signal;
+      controllers.push(controller);
+
+      requests.push(fetch(url, { signal }));
+    } else result.push(cache.storage[url]);
   });
 
   const responses = await Promise.allSettled(requests);
@@ -24,4 +31,9 @@ export const makeConcurrentRequest = async (urls) => {
   }
 
   return result;
+};
+
+export const abortAllRequests = () => {
+  controllers.map((controller) => controller.abort());
+  controllers = [];
 };
