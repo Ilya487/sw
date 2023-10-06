@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import EntityList from "./EntityList/EntityList";
 import { setEntityPage } from "../../API/setEntityPage";
 import { useSearchParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useMatchMedia } from "../../hooks/useMatchMedia";
 import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import { useFetching } from "../../hooks/useFetching";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 const EntityPage = ({ entity }) => {
   const [pageInfo, setPageInfo] = useState({});
@@ -23,6 +24,7 @@ const EntityPage = ({ entity }) => {
 
   useEffect(() => {
     fetchData();
+    window.scrollTo(0, 0);
   }, [searchParams.get("page")]);
 
   const setCurrentPage = (num) => {
@@ -54,7 +56,20 @@ const EntityPage = ({ entity }) => {
   ) : (
     <div className={styles["entity-list"]}>
       <div className="container">
-        <EntityList entityList={pageInfo.results} />
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={searchParams.get("page")}
+            timeout={350}
+            classNames={{
+              enter: styles["my-enter"],
+              enterActive: styles["my-active-enter"],
+              exit: styles["my-exit"],
+              exitActive: styles["my-active-exit"],
+            }}
+          >
+            <EntityList entityList={pageInfo.results} />
+          </CSSTransition>
+        </SwitchTransition>
         <Pagination
           totalCount={pageInfo.count}
           totalItemsOnPage={10}

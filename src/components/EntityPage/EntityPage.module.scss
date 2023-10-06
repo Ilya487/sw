@@ -1,3 +1,24 @@
 .entity-list {
   padding: 30px 0;
+  overflow: hidden;
+}
+
+$time: 0.35s;
+.my-enter {
+  opacity: 0;
+  transform: translateX(25%);
+}
+.my-active-enter {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all $time;
+}
+.my-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.my-active-exit {
+  opacity: 0;
+  transform: translateX(-25%);
+  transition: all $time;
 }
