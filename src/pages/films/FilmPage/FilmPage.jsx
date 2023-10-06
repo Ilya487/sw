@@ -51,6 +51,7 @@ const FilmPage = () => {
   const { fetchData, isError, isLoading } = useFetching(getInfo);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchData();
   }, []);
 
