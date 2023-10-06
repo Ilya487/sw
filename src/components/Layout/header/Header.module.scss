@@ -24,6 +24,14 @@ $bgColor: var(--theme-current-header-bg);
 
   a {
     margin: 0 15px;
+    transition: all 0.3s ease-in;
+
+    @media (pointer: fine) {
+      &:hover {
+        color: var(--theme-current-page);
+        text-shadow: var(--theme-current-page) 2px 1px 10px;
+      }
+    }
   }
 
   @media (max-width: 980px) {
