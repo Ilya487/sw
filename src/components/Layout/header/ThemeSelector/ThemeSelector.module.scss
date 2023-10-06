@@ -3,4 +3,8 @@
   border-radius: var(--border-radius);
   width: 84px;
   z-index: 2;
+  box-shadow: 0px 0px 8px 4px var(--theme-current-page);
+  color: var(--theme-current-page);
+  background-color: transparent;
+  transition: all 0.3s ease-in;
 }

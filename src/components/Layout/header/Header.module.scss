@@ -1,10 +1,16 @@
-$bgColor: cadetblue;
+$bgColor: var(--theme-current-header-bg);
 
 .header {
   background-color: $bgColor;
   position: sticky;
   top: 0;
   z-index: 2;
+  transition: all 0.3s ease-in;
+  color: var(--theme-current-header-color);
+}
+.active-item {
+  color: var(--theme-current-page);
+  text-shadow: var(--theme-current-page) 2px 1px 10px;
 }
 .inner {
   height: 85px;
@@ -12,7 +18,6 @@ $bgColor: cadetblue;
   align-items: center;
   justify-content: center;
   gap: 30px;
-  color: #fff;
 }
 .menu {
   display: flex;
@@ -24,15 +29,15 @@ $bgColor: cadetblue;
   @media (max-width: 980px) {
     position: fixed;
     flex-direction: column;
-    top: 0;
+    top: 0px;
     right: 0;
-    height: 100vh;
+    bottom: 0;
     width: 270px;
     padding: 85px 15px;
     justify-content: center;
     align-items: center;
     background-color: $bgColor;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in;
     transform: translateX(100%);
 
     a {
@@ -40,7 +45,7 @@ $bgColor: cadetblue;
     }
   }
   @media (max-height: 520px) {
-    justify-content: space-between;
+    justify-content: space-around;
     a {
       margin: 0;
     }

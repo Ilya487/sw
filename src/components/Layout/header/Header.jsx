@@ -12,9 +12,7 @@ const Header = () => {
   const [isMenuShow, setIsMenuShow] = useState(false);
 
   function setActive({ isActive }) {
-    return {
-      color: isActive && "red",
-    };
+    return isActive ? styles["active-item"] : "";
   }
 
   const handleMenuShow = () => {
@@ -42,35 +40,35 @@ const Header = () => {
             <div
               className={clsx(styles.menu, isMenuShow && styles["menu--show"])}
             >
-              <NavLink to="search" style={setActive}>
+              <NavLink to="search" className={setActive}>
                 Search
               </NavLink>
 
-              <NavLink to="people?page=1" style={setActive}>
+              <NavLink to="people?page=1" className={setActive}>
                 People
               </NavLink>
 
-              <NavLink to="films?page=1" style={setActive}>
+              <NavLink to="films?page=1" className={setActive}>
                 Films
               </NavLink>
 
-              <NavLink to="planets?page=1" style={setActive}>
+              <NavLink to="planets?page=1" className={setActive}>
                 Planets
               </NavLink>
 
-              <NavLink to="species?page=1" style={setActive}>
+              <NavLink to="species?page=1" className={setActive}>
                 Species
               </NavLink>
 
-              <NavLink to="starships?page=1" style={setActive}>
+              <NavLink to="starships?page=1" className={setActive}>
                 Starships
               </NavLink>
 
-              <NavLink to="vehicles?page=1" style={setActive}>
+              <NavLink to="vehicles?page=1" className={setActive}>
                 Vehicles
               </NavLink>
 
-              <NavLink to="favorite" style={setActive}>
+              <NavLink to="favorite" className={setActive}>
                 <FavoriteLabel />
               </NavLink>
             </div>

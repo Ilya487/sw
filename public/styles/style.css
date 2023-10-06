@@ -24,6 +24,14 @@
   --theme-light-page: rgb(7, 180, 7);
   --theme-dark-page: rgb(230, 13, 13);
   --theme-current-page: var(--theme-light-page);
+
+  --theme-light-header-bg: #ececec;
+  --theme-dark-header-bg: #1a1a1a;
+  --theme-current-header-bg: var(--theme-ligth-header-bg);
+
+  --theme-light-header-color: #131313;
+  --theme-dark-header-color: #dfe2df;
+  --theme-current-header-color: var(--theme-ligth-header-color);
 }
 body {
   background-image: var(--theme-current-bg);
