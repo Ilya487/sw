@@ -32,6 +32,16 @@
   --theme-light-header-color: #131313;
   --theme-dark-header-color: #dfe2df;
   --theme-current-header-color: var(--theme-ligth-header-color);
+
+  --theme-light-preloader-baseColor: #c4c4c4;
+  --theme-dark-preloader-baseColor: #3b3b3b;
+  --theme-current-preloader-baseColor: var(--theme-dark-preloader-baseColor);
+
+  --theme-light-preloader-highlightColor: #a8a8a8;
+  --theme-dark-preloader-highlightColor: #5f5f5f;
+  --theme-current-preloader-highlightColor: var(
+    --theme-dark-preloader-highlightColor
+  );
 }
 body {
   background-image: var(--theme-current-bg);

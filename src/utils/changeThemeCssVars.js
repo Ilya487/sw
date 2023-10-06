@@ -1,5 +1,12 @@
 export const changeThemeCssVars = (theme) => {
-  const vars = ["bg", "page", "header-bg", "header-color"];
+  const vars = [
+    "bg",
+    "page",
+    "header-bg",
+    "header-color",
+    "preloader-baseColor",
+    "preloader-highlightColor",
+  ];
   const root = document.documentElement;
 
   vars.forEach((v) => {
