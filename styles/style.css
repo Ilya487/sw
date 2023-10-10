@@ -57,11 +57,15 @@ body {
 }
 body::before {
   content: "";
+  display: block;
   position: fixed;
-  width: 110vw;
-  height: 100vh;
-  background-image: var(--theme-current-bg);
+  width: 130%;
+  height: 130%;
   z-index: -1;
+  background-image: var(--theme-current-bg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 body::-webkit-scrollbar {
   width: 10px;
