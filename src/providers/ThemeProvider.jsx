@@ -4,7 +4,7 @@ import { changeThemeCssVars } from "../utils/changeThemeCssVars";
 export const ThemeContext = createContext(null);
 
 const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "ligth");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
     changeTheme(theme);
