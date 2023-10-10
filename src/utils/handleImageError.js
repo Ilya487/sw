@@ -1,3 +1,5 @@
+import errorIamge from "../../src/assets/errorPlaceholder.jpg";
+
 export const handleImageError = (e) => {
-  e.target.src = "/src/assets/errorPlaceholder.jpg";
+  e.target.src = errorIamge;
 };
