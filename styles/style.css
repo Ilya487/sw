@@ -71,8 +71,8 @@ body::before {
   z-index: -1;
 }
 @media (pointer: coarse) {
-  body:before {
-    height: 105vh;
+  body::before {
+    height: 205vh;
     /* background-size: 100% 105vh; */
   }
 }
