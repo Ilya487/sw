@@ -53,11 +53,13 @@ body {
 
   scrollbar-width: thin;
   scrollbar-color: var(--theme-current-header-bg) var(--theme-current-page);
-
-  @media (max-width: 1024px) {
+}
+@media (max-width: 1024px) {
+  body {
     background-size: 100% 120%;
   }
 }
+
 body::-webkit-scrollbar {
   width: 10px;
 }
