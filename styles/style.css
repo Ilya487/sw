@@ -72,8 +72,7 @@ body::before {
 }
 @media (pointer: coarse) {
   body:before {
-    height: 110%;
-    /* background-size: 100% calc(100% + 60px); */
+    background-size: 100% 110%;
   }
 }
 body::-webkit-scrollbar {
