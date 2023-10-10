@@ -45,7 +45,7 @@
 }
 body {
   background-image: var(--theme-current-bg);
-  background-size: cover;
+  background-size: 100% 110%;
   background-repeat: no-repeat;
   background-position: top left;
   background-attachment: fixed;
