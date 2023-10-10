@@ -44,12 +44,11 @@
   );
 }
 body {
-  /* background-image: var(--theme-current-bg);
+  background-image: var(--theme-current-bg);
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-position: top left;
-  background-attachment: fixed; */
-  background-color: red;
+  background-attachment: fixed;
   color: #dfe2df;
 
   scrollbar-width: thin;
@@ -67,7 +66,6 @@ body::-webkit-scrollbar-thumb {
 }
 #root {
   height: 100%;
-  border-bottom: 35px solid #000;
 }
 .container {
   max-width: 1310px;
