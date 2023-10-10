@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { makeConcurrentRequest } from "../../utils/makeConcurrentRequest";
+import {
+  abortAllRequests,
+  makeConcurrentRequest,
+} from "../../utils/makeConcurrentRequest";
 import Slider from "./Slider/Slider";
 import Spinner from "../Spinner/Spinner";
 
@@ -21,6 +24,10 @@ const RelatedData = ({ urls, slidesToShow, slidesToScroll }) => {
 
   useEffect(() => {
     getData();
+
+    return () => {
+      abortAllRequests();
+    };
   }, []);
 
   return isLoading ? (

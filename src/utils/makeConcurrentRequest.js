@@ -1,10 +1,9 @@
 import { cache } from "./cache";
 
-let controllers = [];
+let controllers = {};
 
 export const makeConcurrentRequest = async (urls) => {
   await cache.initialize();
-
   const result = [];
 
   const requests = [];
@@ -12,9 +11,14 @@ export const makeConcurrentRequest = async (urls) => {
     if (!cache.storage[url]) {
       const controller = new AbortController();
       const signal = controller.signal;
-      controllers.push(controller);
+      controllers[url] = controller;
 
-      requests.push(fetch(url, { signal }));
+      requests.push(
+        fetch(url, { signal }).then((response) => {
+          delete controllers[response.url];
+          return response;
+        })
+      );
     } else result.push(cache.storage[url]);
   });
 
@@ -34,6 +38,6 @@ export const makeConcurrentRequest = async (urls) => {
 };
 
 export const abortAllRequests = () => {
-  controllers.map((controller) => controller.abort());
-  controllers = [];
+  for (let key in controllers) controllers[key].abort();
+  controllers = {};
 };
