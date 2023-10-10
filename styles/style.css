@@ -1,0 +1,74 @@
+:root {
+  font-family: "Lexend", sans-serif;
+
+  --border-radius: 4px;
+  /* THEME */
+  --theme-light-bg: linear-gradient(
+    to right bottom,
+    #051937,
+    #162454,
+    #312d70,
+    #533389,
+    #7a359f
+  );
+  --theme-dark-bg: linear-gradient(
+    to right bottom,
+    #000000,
+    #160b11,
+    #20141e,
+    #281b2e,
+    #2b2440
+  );
+  --theme-current-bg: var(--theme-light-bg);
+
+  --theme-light-page: rgb(7, 180, 7);
+  --theme-dark-page: rgb(230, 13, 13);
+  --theme-current-page: var(--theme-light-page);
+
+  --theme-light-header-bg: #ececec;
+  --theme-dark-header-bg: #1a1a1a;
+  --theme-current-header-bg: var(--theme-ligth-header-bg);
+
+  --theme-light-header-color: #131313;
+  --theme-dark-header-color: #dfe2df;
+  --theme-current-header-color: var(--theme-ligth-header-color);
+
+  --theme-light-preloader-baseColor: #c4c4c4;
+  --theme-dark-preloader-baseColor: #3b3b3b;
+  --theme-current-preloader-baseColor: var(--theme-dark-preloader-baseColor);
+
+  --theme-light-preloader-highlightColor: #a8a8a8;
+  --theme-dark-preloader-highlightColor: #5f5f5f;
+  --theme-current-preloader-highlightColor: var(
+    --theme-dark-preloader-highlightColor
+  );
+}
+body {
+  background-image: var(--theme-current-bg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-attachment: fixed;
+  color: #dfe2df;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-current-header-bg) var(--theme-current-page);
+}
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-track {
+  background-color: var(--theme-current-header-bg);
+}
+body::-webkit-scrollbar-thumb {
+  box-shadow: inset 0px 0px 15px 1px var(--theme-current-page);
+  border-radius: 20px;
+}
+#root {
+  height: 100%;
+}
+.container {
+  max-width: 1310px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
