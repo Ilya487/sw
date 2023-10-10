@@ -64,7 +64,7 @@ body::before {
   height: 100%;
 
   background-image: var(--theme-current-bg);
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: top left;
   background-attachment: fixed;
@@ -72,7 +72,8 @@ body::before {
 }
 @media (pointer: coarse) {
   body:before {
-    height: calc(100% + 60px);
+    height: 150vh;
+    background-size: 100% 120%;
   }
 }
 body::-webkit-scrollbar {
