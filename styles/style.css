@@ -44,15 +44,24 @@
   );
 }
 body {
-  background-image: var(--theme-current-bg);
+  /* background-image: var(--theme-current-bg);
   background-size: cover;
   background-repeat: repeat;
   background-position: top left;
-  background-attachment: fixed;
+  background-attachment: fixed; */
   color: #dfe2df;
+  position: relative;
 
   scrollbar-width: thin;
   scrollbar-color: var(--theme-current-header-bg) var(--theme-current-page);
+}
+body::before {
+  content: "";
+  position: fixed;
+  width: 110vw;
+  height: 100vh;
+  background-image: var(--theme-current-bg);
+  z-index: -1;
 }
 body::-webkit-scrollbar {
   width: 10px;
