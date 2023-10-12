@@ -73,7 +73,8 @@ body::before {
 }
 @media (max-width: 1024px) {
   body::before {
-    height: 120vh;
+    height: 120%;
+    background-size: 100% 120%;
   }
 }
 
