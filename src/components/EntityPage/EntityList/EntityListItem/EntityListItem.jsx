@@ -12,8 +12,8 @@ const EntityListItem = ({ item }) => {
 
   return (
     <li className={styles.item}>
+      <FavoriteBtn item={item} className={styles["favorite-btn"]} />
       <Link to={`/${entity}/${getEntityNumber(item.url)}`}>
-        <FavoriteBtn item={item} className={styles["favorite-btn"]} />
         <div className={styles["img-wrapper"]}>
           <img
             src={getEntityImg(item.url, entity)}

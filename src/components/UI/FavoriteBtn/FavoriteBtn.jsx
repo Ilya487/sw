@@ -9,7 +9,6 @@ const FavoriteBtn = ({ item, className }) => {
   const isChecked = checkFavorite(item.url);
 
   const handleFavorite = (e) => {
-    e.preventDefault();
     toggleFavorite(item);
   };
 
