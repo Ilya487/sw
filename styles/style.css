@@ -71,14 +71,12 @@ body::before {
   background-attachment: fixed;
   z-index: -1;
 }
-/* @media (pointer: coarse) {
+@media (max-width: 1024px) {
   body::before {
-    height: 120%;
-    background-size: 100% 120%;
-    /* height: calc(100% + 60px);
-    background-size: 100% calc(100% + 60px); */
+    height: 120vh;
   }
-} */
+}
+
 body::-webkit-scrollbar {
   width: 10px;
 }
