@@ -39,7 +39,7 @@ $bgColor: var(--theme-current-header-bg);
     flex-direction: column;
     top: 0px;
     right: 0;
-    bottom: 0;
+    height: 100vh;
     width: 270px;
     padding: 85px 15px;
     justify-content: center;
@@ -50,6 +50,10 @@ $bgColor: var(--theme-current-header-bg);
 
     a {
       margin: 15px 0;
+    }
+
+    @media (pointer: coarse) {
+      height: calc(100vh + 60px);
     }
   }
   @media (max-height: 520px) {
