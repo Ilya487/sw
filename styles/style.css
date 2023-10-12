@@ -72,8 +72,8 @@ body::before {
 }
 @media (pointer: coarse) {
   body::before {
-    height: 120vh;
-    background-size: 100% 120vh;
+    height: 120%;
+    background-size: 100% 120%;
     /* height: calc(100% + 60px);
     background-size: 100% calc(100% + 60px); */
   }
