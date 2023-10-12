@@ -4,8 +4,8 @@ import { getEntityImg } from "../../../../utils/getEntityImg";
 import { Link } from "react-router-dom";
 import { getEntityNumber } from "../../../../utils/getEntityNumber";
 import styles from "./SliderItem.module.scss";
-import { handleImageError } from "../../../../utils/handleImageError";
 import errorImg from "../../../../assets/slideErrorImg.png";
+import MyImg from "../../../UI/MyImg/MyImg";
 
 const SliderItem = forwardRef(({ slide, width }, ref) => {
   const entity = slide.url && defineEntity(slide.url);
@@ -20,7 +20,7 @@ const SliderItem = forwardRef(({ slide, width }, ref) => {
       ref={ref}
     >
       <div className={styles["slide-img"]}>
-        <img src={errorImg} alt="error" />
+        <MyImg src={errorImg} alt="error" />
       </div>
       <p>Faild to fetch</p>
     </div>
@@ -32,10 +32,9 @@ const SliderItem = forwardRef(({ slide, width }, ref) => {
       ref={ref}
     >
       <div className={styles["slide-img"]}>
-        <img
+        <MyImg
           src={getEntityImg(slide.url, entity)}
           alt={entity == "films" ? slide.title : slide.name}
-          onError={handleImageError}
         />
       </div>
       <p>{entity == "films" ? slide.title : slide.name}</p>
