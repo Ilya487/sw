@@ -11,8 +11,6 @@ export const useSearch = (query, entity, currentPage, setCurrentPage) => {
   if (returnedSearch.current == null) returnedSearch.current = searchEntity();
 
   async function search(query, entity, currentPage) {
-    if (!query) return;
-
     let isRequestAbort = false;
     setIsLoading(true);
     setIsError(false);

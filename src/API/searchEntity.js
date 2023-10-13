@@ -9,10 +9,11 @@ export function searchEntity() {
 
     if (controller) controller.abort();
 
+    query = query.trim();
+    if (!query) return {};
+
     controller = new AbortController();
     signal = controller.signal;
-
-    if (!query) return;
 
     const url = `https://swapi.dev/api/${entity}/?search=${query}&page=${page}`;
 
