@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   abortAllRequests,
   makeConcurrentRequest,
@@ -9,35 +9,54 @@ import Spinner from "../Spinner/Spinner";
 const RelatedData = ({ urls, slidesToShow, slidesToScroll }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [inObserv, setInObserv] = useState(false);
 
   async function getData() {
     setIsLoading(true);
-    try {
-      const data = await makeConcurrentRequest(urls);
-      setData(data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
+
+    const data = await makeConcurrentRequest(urls);
+    setData(data);
+
+    setIsLoading(false);
   }
 
+  const handleInObserv = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
+        setInObserv(true);
+        getData();
+      }
+    });
+  };
+
+  const blockRef = useRef(null);
+
   useEffect(() => {
-    getData();
+    const observer = new IntersectionObserver(handleInObserv, {
+      threshold: 0.1,
+    });
+
+    observer.observe(blockRef.current);
 
     return () => {
+      observer.disconnect();
       abortAllRequests();
     };
   }, []);
 
-  return isLoading ? (
-    <Spinner />
+  return inObserv ? (
+    isLoading ? (
+      <Spinner />
+    ) : (
+      <Slider
+        slides={data}
+        slidesToShow={slidesToShow}
+        slidesToScroll={slidesToScroll}
+      />
+    )
   ) : (
-    <Slider
-      slides={data}
-      slidesToShow={slidesToShow}
-      slidesToScroll={slidesToScroll}
-    />
+    <div ref={blockRef} style={{ height: "500px" }}></div>
   );
 };
 

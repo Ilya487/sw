@@ -5,7 +5,6 @@ import placeholder from "../../../assets/placeholder.jpg";
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      console.log("ZXC");
       const src = entry.target.dataset.src;
       entry.target.src = src;
       entry.target.style.visibility = "visible";
