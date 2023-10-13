@@ -8,7 +8,7 @@ import Spinner from "../Spinner/Spinner";
 const Search = ({ entity }) => {
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const query = searchParams.get("search");
+  const query = searchParams.get("search") || "";
 
   const { searchData, isLoading, isError, refresh } = useSearch(
     query,
