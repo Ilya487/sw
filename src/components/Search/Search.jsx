@@ -17,7 +17,7 @@ const Search = ({ entity }) => {
     setCurrentPage
   );
 
-  return (
+  return !query.trim() ? null : (
     <div className={styles.block}>
       <h2 className={styles.title}>{entity}</h2>
 
