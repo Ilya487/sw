@@ -4,7 +4,7 @@ import lightSideImg from "./img/Light_side_symbol.png";
 import { useTheme } from "../../../../hooks/useTheme";
 
 const Logo = () => {
-  const [currentImg, setCurrentImg] = useState(lightSideImg);
+  const [currentImg, setCurrentImg] = useState(null);
   const { theme } = useTheme();
 
   useEffect(() => {

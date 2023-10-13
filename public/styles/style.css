@@ -23,7 +23,7 @@
 
   --theme-light-page: rgb(7, 180, 7);
   --theme-dark-page: rgb(230, 13, 13);
-  --theme-current-page: var(--theme-light-page);
+  --theme-current-page: "";
 
   --theme-light-header-bg: #ececec;
   --theme-dark-header-bg: #1a1a1a;
